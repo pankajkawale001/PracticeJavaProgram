@@ -1,0 +1,90 @@
+
+Que. What is lambda expression?
+
+The expressions through which we can represent Anonymous function is called lambda expression. 
+Anonymous: Nameless / Unknown
+
+Anonymous function: A method who don't have any name or modifier.
+
+Syntax: Prameter ()    Expression ->    Body {};
+
+The lambda expression only can applicable for functional interface.
+the method which is present in the functional interface only.
+
+
+Que. What is functional interface?
+
+The interface who contains only one abstract method and any number of default and static methods 
+is called as functional interface.
+
+For example: 
+
+1. Runnable -> run()
+2. Callable-> call()
+
+3. Comparable-> compareTo() The Comparable interface is implemented by a class to define its natural ordering.
+By implementing Comparable, a class indicates that its instances can be sorted using the natural ordering.
+
+The compareTo method returns value as : 1,0,-1 and the two objects are swapped only when the compareTo method returns 1.
+
+If compareTo() returns a negative integer, it indicates that the current object should come before the object being compared to.
+If compareTo() returns zero, it means that the two objects are considered equal in terms of ordering.
+If compareTo() returns a positive integer, it means that the current object should come after the object being compared to.
+
+4. Comparator-> compare() The Comparator interface provides a way to define custom ordering for objects that 
+may not have a natural ordering or for cases where you want to define multiple sorting criteria.
+It contains two methods: compare(Object obj1, Object obj2) and equals(Object obj).
+
+5. Consumer-> accept()
+Consumer can be use in all contexts where object need to be consumed.
+i.e. taken as a input and some operation is to be performed on the object without returning any result.
+
+6. Predicate interface - This functional interface can be used for conditional check.
+Where you think we can use true/false returning function in day to day programming we should choose predicate.
+boolean test(Tt);
+
+7. Supplier interface - This functional interface can be used to print some dummy data while 
+expected result not display from the list.
+
+
+Que. What is Stream API
+
+Stream API is used to process list of object/It is a sequence of objects that supports various methods
+which can be pipelined to produce the desired result. 
+
+A Stream is not a data structure instead it takes input from the collections, Arrays or channels.
+
+Stream don't change the original data structure, they only provide the result as per the pipelined methods.
+
+Que. Why we need Stream API
+
+Functional style of programming.
+Code reduce.
+Bulk operations.
+Better performance.
+
+
+SELECT MAX (Salary) FROM Employee WHERE Salary NOT IN (SELECT Max (Salary) FROM Employee);
+
+SELECT DEPARTMENT_ID, COUNT(*) 
+    FROM EMPLOYEES WHERE GROUP BY DEPARTMENT_ID HAVING COUNT(*)>5;
+    
+//Get employee name and manager name from employee tble based on id
+
+select E.firstname AS EMPLOYEE_NAME, M.firstName AS MANAGER_NAME from EMPLOYEE E JOIN EMPLOYEE M ON M.managerId= E.eployeeId;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
