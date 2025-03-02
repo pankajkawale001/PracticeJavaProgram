@@ -1,0 +1,151 @@
+Design patterns used at Diffrent Software layers -
+ https://www.baeldung.com/cs/saga-pattern-microservices
+ https://codefresh.io/learn/microservices/top-10-microservices-design-patterns-and-how-to-choose/
+
+Load Balancer Layer
+Application Server Layer
+API Gateway Layer
+
+1. Service Registry
+2. Circuit breaker
+3. API Gateway Pattern
+4. Database per Service Pattern
+5. Command Query Responsibility Segregation (CQRS)
+6. Externalized Configuration
+7. Saga Pattern
+8. Bulkhead Pattern
+9. Backends for Frontends (BFF)
+10.Distributed Transaction
+11.Understanding Two-Phase Commit Pattern
+12.Event-Driven Architecture
+
+-----------------------------------------------------------------------------------------------------
+1. Service Registry
+		A service registry is like a map for your services; it keeps track of all the services in your system, making it easier for them to find each other.
+		Every service in your system needs to register itself with the service registry when it starts up, and deregister when it shuts down.
+		Other services can then query the service registry to locate the services they need to interact with. 
+		This allows your system to be dynamic and adaptable, as services can come and go as required without disrupting the overall functionality.
+
+-- How does Service Discovery work?
+		In a microservices architecture, each service typically runs on its own container or virtual machine. 
+		These services need to discover and communicate with each other dynamically, as their locations (IP addresses and ports)
+	    may change due to scaling, deployment updates, or failures. Service discovery enables this dynamic interaction by providing
+	    a centralized mechanism for service registration and lookup.
+
+		
+2. Circuit breaker
+		A circuit breaker is used to detect failures and encapsulate the logic of preventing a failure from constantly recurring. 
+		Circuit breakers could be triggered due to bugs in one or more microservices, 
+		temporary external system failure, or unexpected operating conditions.
+		In a microservices architecture, you employ the circuit breaker pattern to monitor the interaction between services. 
+		If a service is failing or responding slowly, the circuit breaker trips and prevents further calls to the service, 
+		thus preventing a system-wide failure. 
+		Once the service is back up, the circuit breaker resets, and things go back to normal.
+		
+		The idea of this pattern is to prevent calling a microservice in case of abnormal behavior in that service (service down or timeout…). 
+		This idea can help the client’s side ignore handling failed requests and give the service some time to recover.
+
+		Circuit Breaker has three states: Closed, Open, and Half_Open.
+		1. Closed
+		Closed is the initial state of circuit breaker. When microservices run and interact smoothly, circuit breaker is Closed. 
+		It keeps continuously monitoring the number of failures occurring within the configured time period. 
+		If the failure rate exceeds the specified threshold, Its state will change to Open state. 
+		If not, it will reset the failure count and timeout period.
+		
+		2. Open
+		During Open state, circuit breaker will block the interacting flow between microservices. 
+		Request callings will fail, and exceptions will be thrown. Open state remains until the timeout ends, then change to Half_Open state.
+		
+		3. Half_Open
+		In Half_Open state, circuit breaker will allow a limited of number requests to pass through. 
+		If the failure rate is greater than the specified threshold, it switches again to Open state. Otherwise, it is Closed state.
+				
+
+3. API Gateway Pattern
+		An API gateway acts as a single entry point into your system for all clients. 
+		This can be especially beneficial if you have multiple client apps, such as a web app and a mobile app,
+		as it allows you to maintain a single API for all clients, simplifying client-side code.
+		The API gateway can handle requests in one of two ways. It could route requests to the appropriate services directly, 
+		or it could use a process known as composition, where it would combine data from multiple services and return the aggregate result to the client. 
+		This not only simplifies client-side code but also makes your system more efficient and user-friendly.
+		
+4. Database per Service Pattern
+		In a traditional monolithic application, you would have a single database that all services interact with. 
+		However, in a microservices architecture, each service has its own database.
+		Why is this beneficial? Well, it allows each service to be decoupled from the others, 
+		which means that a failure in one service does not affect the others. Furthermore, it allows for better performance, 
+		as each service can be optimized independently based on its specific needs.		
+		
+5. Command Query Responsibility Segregation (CQRS)
+		CQRS is a microservices design pattern that separates read and write operations. 
+		In traditional systems, the same data model is often used for both these operations. However, CQRS advocates for a different approach. 
+		It proposes the use of separate models for update (Command) and read (Query) operations. 
+		This segregation enables you to optimize each model for its specific purpose, thereby improving performance and scalability.
+		However, implementing CQRS is not without its challenges. It can complicate your system due to the need to synchronize two data models. 
+		But, when applied correctly, it can significantly enhance the flexibility and performance of your system.
+			
+6. Externalized Configuration
+
+		The externalized configuration pattern advocates for the separation of configuration from the code. 
+		This separation allows you to modify the behavior of your application without the need for code changes or system restarts.
+		This pattern is particularly useful in microservices architectures where you may have multiple 
+		instances of a service running with different configurations. By externalizing the configuration, you can manage all instances efficiently. 
+		However, it does require a robust configuration management system to avoid configuration drift.
+
+7. Introduction to Saga Pattern
+		The Saga architecture pattern provides transaction management using a sequence of local transactions.
+		The saga pattern can help maintain data consistency between multiple services without tight coupling 
+		However, it can be complex to implement, especially when managing the order of steps and handling failures 
+		
+	7.1 What Is Saga Architecture Pattern
+		The Saga architecture pattern provides transaction management using a sequence of local transactions.
+		A local transaction is the unit of work performed by a Saga participant. 
+		Every operation that is part of the Saga can be rolled back by a compensating transaction.
+		Further, the Saga pattern guarantees that either all operations complete successfully or the corresponding compensation transactions are run to undo the work previously completed.
+		In the Saga pattern, a compensating transaction must be idempotent and retryable. These two principles ensure that we can manage transactions without any manual intervention.
+		
+	7.2 Choreography Saga Pattern
+		In the Saga Choreography pattern, each microservice that is part of the transaction publishes an event that is processed by the next microservice.
+		To use this pattern, we need to decide if the microservice will be part of the Saga. Accordingly, the microservice needs to use the appropriate framework to implement Saga. 
+		In this pattern, the Saga Execution Coordinator is either embedded within the microservice or can be a standalone component.
+		In the Saga, choreography flow is successful if all the microservices complete their local transaction, and none of the microservices reported any failure.
+		This pattern is best for sagas with a small number of participants
+		It's simple to implement and doesn't have a single point of failure
+		However, it can become difficult to track dependencies between participants as more participants are added.
+		In the event of a failure, the microservice reports the failure to SEC, and it is the SEC’s responsibility to invoke the relevant compensation transactions:
+
+	7.3 Orchestration Saga Pattern
+		In the Orchestration pattern, a single orchestrator is responsible for managing the overall transaction status.
+		In this pattern, an orchestrator or conductor controls the microservices
+		This allows for centralized control of the saga or workflow
+		The orchestrator can be centralized for all sagas or distributed for each saga
+		
+	7.4 The Saga Execution Coordinator
+		The Saga Execution Coordinator is the central component to implement a Saga flow. 
+		It contains a Saga log that captures the sequence of events of a distributed transaction.
+		For any failure, the SEC component inspects the Saga log to identify the impacted components and the sequence
+		in which the compensating transactions should run.
+		For any failure in the SEC component, it can read the Saga log once it’s coming back up.
+		It can then identify the transactions successfully rolled back, which ones are pending, and can take appropriate actions
+		
+8. Bulkhead Pattern
+		The bulkhead pattern is a microservices design pattern that helps to prevent failures in one part of a system from cascading to other parts. 
+		It does so by isolating elements of an application into pools so that if one fails, the others continue to function.
+		This pattern is inspired by the bulkheads in a ship. Just as a ship is divided into watertight compartments 
+		to prevent it from sinking if one part is breached, an application can be divided into isolated groups to protect it from failures.
+
+9. Backends for Frontends (BFF)
+		The BFF pattern proposes the creation of separate backend services for different types of clients (like desktop, mobile, etc.). 
+		This allows you to tailor the backend services to the specific needs of each client, thereby improving user experience and performance.
+		However, this pattern can lead to code duplication if not managed properly. 
+		Therefore, it is crucial to strike a balance between customization and code reuse when using the BFF pattern.
+
+10.Distributed Transaction
+11.Understanding Two-Phase Commit Pattern
+12.Event-Driven Architecture
+
+13. Resiliency Patterns in Microservices
+		Microservices architecture is all about building applications as a collection of loosely coupled services. 
+		While this approach offers several benefits like scalability and flexibility, it also introduces challenges, especially in terms of handling failures. 
+		
+		Resiliency patterns are crucial in ensuring that microservices can withstand and recover from failures, maintaining high availability and performance.

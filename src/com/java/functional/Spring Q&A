@@ -1,0 +1,208 @@
+SOAP API
+	Relies on SOAP (Simple Object Access Protocol)
+	Transports data in standard XML format.
+	Because it is XML based and relies on SOAP, it works with WSDL	It works with GET, POST, PUT, DELETE
+	Highly structured/typed	
+	Designed with large enterprise applications in mind	
+REST API
+	Relies on REST (Representational State Transfer) architecture using HTTP.
+	Generally transports data in JSON. It is based on URI. Because REST follows stateless model, REST does not enforces message format as XML or JSON etc.
+	Works over HTTP, HTTPS, SMTP, XMPP	Works over HTTP and HTTPS
+    Less structured -> less bulky data
+    Designed with mobile devices in mind
+
+--Diff between rest and restful service 
+	Flexibility: REST APIs are more flexible and easier to implement than RESTful APIs. 
+
+	Scalability: RESTful APIs are better suited for large-scale, distributed systems, while REST works well for small-scale applications. 
+	Performance: RESTful APIs are highly performant because they strictly adhere to REST principles. 
+
+-- Role-based access control 
+	To implement role-based access control (RBAC) in a Spring Boot application, you primarily use Spring Security by defining user roles in your database, associating them with users, and then configuring your Spring Security configuration to restrict access to specific endpoints based on these roles, using annotations like @PreAuthorize on controller methods to check if a user has the required role before executing a method. 
+
+-- Differences Between @Qualifier and @Primary
+
+-- @Qualifier : Used to specify exactly which bean should be injected when multiple beans of the same type exist. 
+		It's explicit and provides fine-grained control over injection. 
+
+-- @Primary : Sets a default bean to be injected when there are multiple beans of the same type.
+
+-- @Component is an annotation that allows Spring to detect our custom beans automatically.
+	In other words, without having to write any explicit code, Spring will:
+	Scan our application for classes annotated with @Component
+	Instantiate them and inject any specified dependencies into them
+	Inject them wherever needed
+
+@Component is used to mark the MyComponent class as a component. This class is automatically detected by Spring and registered as a bean in the Spring IoC container.
+
+@Component is typically used when you want to define a bean for a class that you create yourself and that has a simple initialization process. This is because @Component provides a convenient way to register a class as a bean without having to define a separate configuration class.
+
+@Bean is typically used when you want to define a bean for a class that you do not control, such as a third-party library. This allows you to create a bean instance and customize its behavior as needed.
+@Configuration
+public class AppConfig {
+	@Bean
+    public MyBean myBean() {
+        return new MyBean();
+    }
+}
+
+-- Bean life cycle 
+Bean life cycle is managed by the spring container. When we run the program then, first of all, the spring container gets started. After that, the container creates the instance of a bean as per the request, and then dependencies are injected. And finally, the bean is destroyed when the spring container is closed. Therefore, if we want to execute some code on the bean instantiation and just after closing the spring container, then we can write that code inside the custom init() method and the destroy() method.
+
+@SpringBootApplication: It is a combination of three annotations @EnableAutoConfiguration, @ComponentScan, and @Configuration.
+
+@Controller
+Used to declare common web controllers that can return HTTP responses. This is best used in UI-based applications where you want to return a view, such as an HTML page.
+
+@RestController
+Used to create controllers for REST APIs that can return JSON responses. This is best used when you want to return data, such as JSON or XML, rather than a view.
+
+-- @Transactions in a Spring Boot Application
+A transaction is a logical unit of work that includes one or more database operations. A transaction ensures that all the database operations are executed as a single unit of work. If any operation in a transaction fails, the entire transaction is rolled back, ensuring that the data remains consistent.
+
+@Transactional annotation we used on method level to particular method transactional or at class level to make all the public methods in that class as transactional.
+Also need to use @EnableTransactionManagement in the main class of our spring boot application.
+
+-- API gateway?
+An API gateway is a component that sits between your backend services and your API clients. It acts as a reverse proxy, routing requests from clients to the appropriate backend service and then returning the service's response back to the client.
+
+-- Load balancer spring boot?
+It is considered the building block of modern applications. Taking about the general definition, Load Balancer is a network device that sits between a set of backend servers and clients. It distributes the incoming traffic to multiple servers to reduce the load.
+
+-- Circuit Breaker Pattern
+The idea of this pattern is to prevent calling a microservice in case of abnormal behavior in that service (service down or timeout…). This idea can help the client’s side ignore handling failed requests and give the service some time to recover.
+
+Circuit Breaker has three states: Closed, Open, and Half_Open.
+1. Closed
+Closed is the initial state of circuit breaker. When microservices run and interact smoothly, circuit breaker is Closed. It keeps continuously monitoring the number of failures occurring within the configured time period. If the failure rate exceeds the specified threshold, Its state will change to Open state. If not, it will reset the failure count and timeout period.
+
+2. Open
+During Open state, circuit breaker will block the interacting flow between microservices. Request callings will fail, and exceptions will be thrown. Open state remains until the timeout ends, then change to Half_Open state.
+
+3. Half_Open
+In Half_Open state, circuit breaker will allow a limited of number requests to pass through. If the failure rate is greater than the specified threshold, it switches again to Open state. Otherwise, it is Closed state.
+
+-- How does Service Discovery work?
+In a microservices architecture, each service typically runs on its own container or virtual machine. These services need to discover and communicate with each other dynamically, as their locations (IP addresses and ports) may change due to scaling, deployment updates, or failures. Service discovery enables this dynamic interaction by providing a centralized mechanism for service registration and lookup.
+
+Eureka: A REST-based service registry for resilient mid-tier load balancing and failover.
+
+How to check health of spring boot application
+To check the health of a Spring Boot application, you can use the Spring Boot Actuator endpoint to access the health indicator: 
+Go to the browser and type HTTP localhost:8080/actuator/health 
+The endpoint will show the application's status, including the custom health indicator 
+
+Dependency injection aims to separate the concerns of constructing objects and using them, leading to loosely coupled programs. The pattern ensures that an object or function that wants to use a given service should not have to know how to construct those services.
+
+-- Which dependency injection is better in Spring?
+
+We can say that the constructor dependency injection is best in Spring for various reasons. It has better readability, supports immutability, and is state-safe(the object is instantiated to the entire state or not at all.
+
+Readability
+Constructor injection is more readable than other types of dependency injection. 
+Immutability
+Constructor injection promotes immutability, which ensures that an object is in a valid state when it's created. 
+State safety
+Constructor injection is state-safe, meaning that an object is instantiated to its entire state or not at all.
+
+-- Setter injection is another type of dependency injection in Spring, but it's generally only recommended for optional dependencies. Setter injection provides more flexibility and control over dependencies, and it makes testing easier. However, it can also involve a lot of boilerplate, as each bean needs a setter and each setter needs to be decorated with an annotation.
+
+-Spring profiling
+Spring Boot Profiles are a powerful tool for managing environment-specific configurations.
+They promote flexibility and maintainability by allowing an application to adapt to different environments seamlessly.
+By following a few simple steps, developers can create and activate profiles to control an application’s behavior in various contexts.
+in application.properties add the following line of code in it-
+spring.profiles.active=dev
+
+-RestTemplate
+https://www.geeksforgeeks.org/spring-boot-rest-template/
+
+@Autowired 
+private RestTemplate restTemplate;
+
+RestTemplate in Spring Boot offers simplified HTTP request handling, seamless Spring integration, inter-service communication, customization, error handling, and ease of use. It also supports authentication, making it versatile for various API interactions.
+
+Methods
+GET getForObject(), getForEntity(), exchange()
+POST postForObject(), exchange()
+PUT put(), exchange()
+DELETE delete(), exchange()
+
+@GetMapping("/getForObject/allEmployees")
+public ResponseEntity<?> getCustomersUsingGetForObject()
+{
+	// Using getForObject method to fetch
+    // Customer Data from URL and automatically
+    // convert the response into array of customer
+    Customer[] CustomerData = restTemplate.getForObject(
+        URI_CUSTOMER, Customer[].class);
+
+    // Returning a Response of 200 OK along with
+    // Customer-Data wrapped into ResponseEntity
+    return new ResponseEntity<>(Arrays.asList(CustomerData),
+                                HttpStatus.OK);
+}
+
+--Advantages of Microservices
+Microservices are self-contained, independent deployment module.
+The cost of scaling is comparatively less than the monolithic architecture.
+Microservices are independently manageable services. It can enable more and more services as the need arises. It minimizes the impact on existing service.
+
+It is possible to change or upgrade each service individually rather than upgrading in the entire application.
+Microservices allows us to develop an application which is organic (an application which latterly upgrades by adding more functions or modules) in nature.
+It enables event streaming technology to enable easy integration in comparison to heavyweight interposes communication.
+Microservices follows the single responsibility principle.
+The demanding service can be deployed on multiple servers to enhance performance.
+Less dependency and easy to test.
+Dynamic scaling.
+Faster release cycle.
+
+--Disadvantages of Microservices
+Microservices has all the associated complexities of the distributed system.
+There is a higher chance of failure during communication between different services.
+Difficult to manage a large number of services.
+The developer needs to solve the problem, such as network latency and load balancing.
+Complex testing over a distributed environment.
+
+What is Serialization in Java?
+Serialization in Java is an essential concept in programming that allows you to convert complex data structures, such as objects, into a format that can be easily stored or transmitted. It is a crucial technique in various Java applications, including network communication, database storage, and more.
+
+-- To solve memory leaks in Spring Boot microservices, focus on preventative measures like proper resource management, using appropriate data structures, closing resources diligently, and monitoring memory usage with profiling tools like VisualVM or JFR; when investigating leaks, analyze heap dumps to identify objects holding unnecessary references and fix the underlying code causing the leak, often related to caching mechanisms, static variables, or unclosed connections. 
+-Key strategies to prevent memory leaks in Spring Boot microservices:
+-Coding best practices:
+---Avoid unnecessary object creation: Don't create objects you don't need, especially in loops. 
+Null unused references: Set references to objects you no longer need to null to allow garbage collection. 
+Use try-with-resources: Ensure resources like streams and connections are automatically closed. 
+Proper data structures: Choose the correct data structure based on your requirements to avoid memory issues. 
+Manage object lifecycles: Be mindful of object creation and destruction in your application. 
+
+---Utilize caching effectively:
+--Eviction policies: Implement eviction policies in your cache to remove old or rarely used entries. 
+--Cache size limits: Set reasonable cache size limits to prevent excessive memory usage. 
+--Monitor and profile memory usage:
+--JVM monitoring tools: Use tools like VisualVM, Java Mission Control (JMC), or YourKit to monitor memory usage and identify potential leaks. 
+
+--Heap dumps: Regularly take heap dumps to analyze object allocation patterns and identify objects holding onto unnecessary references. 
+Address specific memory leak scenarios:
+Static variables: Be cautious with static variables as they can hold references to objects for the entire application lifetime. 
+Unclosed connections: Ensure database connections, network streams, and other external resources are closed properly. 
+Large data structures in loops: If iterating through large datasets, avoid creating unnecessary copies in memory. 
+Spring WebClient: When using Spring WebClient, ensure you are not creating unnecessary URI builders that could lead to leaks. 
+
+
+Type	Question	Answer	Keyword
+JAVA + SPRINGBOOT	Name any Stream Intermediatory Operators ?	filter, map, peek, findFirst, distinct, skip, limit, findAny, findLast, anyMatch, noneMatch, AllMatch	must know atleast 3
+JAVA + SPRINGBOOT	Difference between @Controller & @RestController	1. @Controller handles web pages and returns views (like HTML), requiring @ResponseBody for data responses.	 
+2. @RestController simplifies RESTful APIs by automatically returning data (like JSON) without needing @ResponseBody.
+3. @RestController is essentially @Controller + @ResponseBody combined.
+JAVA + SPRINGBOOT	What is the purpose of Spring Boot's @SpringBootApplication annotation?	It is a convenience annotation that combines @Configuration, @EnableAutoConfiguration, and @ComponentScan to simplify Spring configuration.	@SpringBootApplication, @Configuration, @EnableAutoConfiguration, @ComponentScan
+JAVA + SPRINGBOOT	What is the use of @Transactional in Spring Boot	@Transactional manages transaction boundaries, ensuring that a series of operations either complete successfully or rollback in case of failure.	@Transactional, transaction management, rollback.
+JAVA + SPRINGBOOT	What are different ways to pass Data in API ?	Path Parameters: Data passed directly in the URL to identify resources (e.g., /items/{id}).	Path parameters, query parameters, request body, headers, URL, HTTP body, authentication, tokens, JSON/XML.
+Query Parameters: Data appended to the URL after ? (e.g., /search?query=value).
+Request Body: Data sent in the HTTP body, typically for POST/PUT requests (e.g., JSON, XML).
+Headers: Data like tokens or metadata passed in the HTTP headers (e.g., authentication).
+ANGULAR	What is the purpose of ngOnInit() in Angular?	ngOnInit() is a lifecycle hook that initializes component logic after Angular has fully initialized the component's input properties.	ngOnInit(), lifecycle hook, component initialization.
+ANGULAR	What is the difference between @Input() and @Output() in Angular?	@Input() passes data from a parent component to a child, while @Output() emits events from the child component to the parent.	@Input(), @Output(), parent-child data flow, event emission.
+ANGULAR	What is pipe in angular?	A pipe in Angular is a feature used to transform data in templates. It takes in data as input and formats it to display in a more readable or useful way.	transform(), built-in pipes, custom pipes, DatePipe, CurrencyPipe, data transformation, template
+ANGULAR	What is ngClass in Angular?	ngClass is a directive used to dynamically add or remove CSS classes on an HTML element based on a condition.	dynamic classes, conditional, CSS, ngClass
+ANGULAR	What is lazy loading in Angular?	Lazy loading is a technique that loads feature modules on demand rather than at application startup, improving performance and load times.	performance optimization, feature modules, asynchronous loading, loadChildren.

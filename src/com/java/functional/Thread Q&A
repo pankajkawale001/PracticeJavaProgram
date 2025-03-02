@@ -1,0 +1,120 @@
+Thread - https://www.javatpoint.com/how-to-create-a-thread-in-java
+
+-- Life cycle of a Thread (Thread States)
+    
+	In Java, a thread always exists in any one of the following states. These states are:
+	New born
+	Active Runnable/Running
+	Blocked / Waiting
+	Timed Waiting
+	Terminated/Dead
+
+--ExecutorService
+	In ExecutorService, we typically submit tasks for execution and then use the Future objects returned by these tasks to handle dependencies and chain subsequent tasks. However, this involves blocking and waiting for the completion of each task before proceeding to the next, which can lead to inefficiencies in handling asynchronous workflows.
+	Exceptions thrown within the submitted tasks: These exceptions propagate back to the main thread when we attempt to retrieve the result using methods like get() on the returned Future object. This can lead to unexpected behavior if not handled appropriately.
+	Unchecked exceptions during thread pool management: If an unchecked exception occurs during thread pool creation or shutdown, it’s typically thrown from the ExecutorService methods themselves. We need to catch and handle these exceptions in our code.
+
+-- CompletableFuture
+	The CompletableFuture was introduced in Java 8. It focuses on composing asynchronous operations and handling their eventual results in a more declarative way. A CompletableFuture acts as a container that holds the eventual result of an asynchronous operation. It might not have a result immediately, but it provides methods to define what to do when the result becomes available.
+	CompletableFuture offers a more streamlined and expressive way to chain asynchronous tasks. It simplifies task chaining with built-in methods like thenApply(). These methods allow you to define a sequence of asynchronous tasks where the output of one task becomes the input for the next.
+
+-- What is Executors Class?
+	Executors class provide utility methods for Executor, ExecutorService, ScheduledExecutorService, ThreadFactory, and Callable classes. Executors class can be used to easily create Thread Pool in java, also this is the only class supporting execution of Callable implementations.
+
+-- Runnable interface is suitable for simple tasks,
+	However, Runnable instances can be run by Thread class as well as ExecutorService but 
+   
+-- Callable instances can only be executed via ExecutorService.
+	Callable interface a powerful tool for managing concurrent tasks with precision.
+	Callable interface provides more flexibility and power, allowing tasks to return results and handle exceptions. Choosing the right interface based on your specific requirements can lead to more robust and maintainable multithreaded applications. 
+
+-- Marker Interface in Java is an empty interface means having no field or methods. 
+	Examples of marker interface are Serializable, Cloneable and Remote interface. All these interfaces are empty interfaces. 
+
+
+Transient Keyword:
+	Purpose: The transient keyword tells the Java serialization mechanism to exclude a field from the serialization process. This means the field's value will not be saved or restored during serialization and deserialization, respectively.
+	How to Use: Simply declare the field as transient
+
+-- What is the synchronized keyword in Java?
+   The synchronized keyword is a modifier that locks a method so that only one thread can use it at a time. This prevents problems that arise from race conditions between threads.
+
+-- How can we achieve thread safety in Java?
+	synchronization, atomic concurrent classes, implementing concurrent Lock interface, using volatile keyword, using immutable classes and Thread safe classes
+
+-- What is volatile keyword in Java?
+	When we use volatile keyword with a variable, all the threads read it's value directly from the memory and not from the CPU cache. 
+	This makes sure that the value read is the same as in the memory.
+
+-- Which is more preferred - Synchronized method or Synchronized block?
+	Synchronized block is more preferred way because it doesn't lock the Object, synchronized methods lock the Object and if there are multiple synchronization blocks in the class, even though they are not related, it will stop them from execution and put them in wait state to get the lock on Object.
+
+-- AtomicInteger is a thread safe data structure available in the java.util.concurrent.atomic package.
+	The objective of the class is to ensure atomic operations on integer variables.
+
+-- Why AtomicInteger?
+	The AtomicInteger class helps in solving the synchronization problem which could occur in a multithreaded scenario 
+	What is atomic operation? What are atomic classes in Java Concurrency API?
+
+	Atomic operations are performed in a single unit of task without interference from other operations. Atomic operations are necessity in multi-threaded environment to avoid data inconsistency. int++ is not an atomic operation. So by the time one thread read its value and increment it by one, another thread has read the older value leading to the wrong result. To solve this issue, we will have to make sure that increment operation on count is atomic, we can do that using Synchronization but Java 5 java.util.concurrent.atomic provides wrapper classes for int and long that can be used to achieve this atomically without the usage of Synchronization.
+	Thread-safe means doesn’t get messed up when accessed from multiple threads; atomic means indivisible, in that context equivalent to uninterruptible. 
+
+
+-----------------------------Databases----------------------------
+
+What is the N+1 problem in Hibernate?
+
+The N+1 query problem is said to occur when an ORM, like hibernate, executes 1 query to retrieve the parent entity and N queries to retrieve the child entities. As the number of entities in the database increases, the queries being executed separately can easily affect the performance of the application.
+
+Hibernate provides a couple of ways to eliminate this issue:
+1. The first solution is to use join fetch:
+2. Another way is to use @BatchSize on the lazy association:
+3. The third way is to use a sub query returning a list of author identifiers
+Hibernate provides this opportunity by setting @Fetch(FetchMode.SUBSELECT) on the lazy association:
+
+
+How to Create Index in MySQL
+An index is a data structure that allows us to add indexes in the existing table. It enables you to improve the faster retrieval of records on a database table. It creates an entry for each value of the indexed columns. We use it to quickly find the record without searching each row in a database table whenever the table is accessed. We can create an index by using one or more columns of the table for efficient access to the records.
+
+Views in SQL
+Views in SQL are considered as a virtual table. A view also contains rows and columns.
+To create the view, we can select the fields from one or more tables present in the database.
+A view can either have specific rows based on certain condition or all the rows of a table.
+
+what is trigger
+A Trigger in Structured Query Language is a set of procedural statements which are executed automatically when there is any response to certain events on the particular table in the database. Triggers are used to protect the data integrity in the database.
+INSERT Event: This event is called when the new row is entered in the table.
+UPDATE Event: This event is called when the existing record is changed or modified in the table.
+DELETE Event: This event is called when the existing record is removed from the table.
+
+In SQL, this concept is the same as the trigger in real life. For example, when we pull the gun trigger, the bullet is fired.
+
+what is stored Procedure in SQL Server
+A stored procedure is a group of one or more pre-compiled SQL statements into a logical unit. It is stored as an object inside the database server. It is a subroutine or a subprogram in the common computing language that has been created and stored in the database. Each procedure in SQL Server always contains a name, parameter lists, and Transact-SQL statements. The SQL Database Server stores the stored procedures as named objects. We can invoke the procedures by using triggers, other procedures, and applications such as Java, Python, PHP, etc. It can support almost all relational database systems.
+
+
+--------------------------------- KAFKA ---------------------
+What is Broker 
+A Kafka broker is a server that manages data flow between producers and consumers in Apache Kafka
+
+What is consumer and producer
+In Apache Kafka, a producer sends data to a Kafka cluster, while a consumer reads data from the cluster
+
+what is topic
+A topic in Apache Kafka is a user-defined category for storing and publishing data. It's similar to a table in a relational database. Topics are used to organize messages, and are the fundamental unit of organization for events
+
+what is offset
+In Apache Kafka, an offset is a numerical value that represents the order of messages in a partition. It's a unique identifier for each record in a partition and indicates the position of a consumer in that partition.
+
+What is partition and message
+In Apache Kafka, a partition is a set of messages written to a topic, and a message is a unit of data in Kafka
+
+How to modify spring boot strter
+
+
+In micro service we want get some data from other data base how to do that configuration 
+
+What is Kubernetes (k8s)? : https://www.geeksforgeeks.org/introduction-to-kubernetes-k8s/
+Kubernetes is an open-source Container Management tool that automates container deployment, container scaling, descaling, and container load balancing (also called a container orchestration tool). It is written in Golang and has a vast community because it was first developed by Google and later donated to CNCF (Cloud Native Computing Foundation). Kubernetes can group ‘n’ number of containers into one logical unit for managing and deploying them easily. It works brilliantly with all cloud vendors i.e. public, hybrid, and on-premises. 
+
+

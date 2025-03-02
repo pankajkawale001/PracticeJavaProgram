@@ -1,0 +1,307 @@
+-- All Sealed java classes or interfaces must use permits keyword. For example:
+Sealed Classes: These enable developers to create a restricted class hierarchy, allowing only specified classes to extend a base class.
+
+public sealed class Parent permits Child1, Child2 {
+  void parentMethod() {
+    System.out.println("from a sealed parent class ");
+  }
+}
+
+
+-- Intermediate Operations :
+	They return stream. 
+	Intermediate operations are lazily loaded.
+	They don’t produce end result.
+	
+	map(), filter(), distinct(), sorted(), limit(), skip()
+
+-- Terminal Operations : 
+	They return non-stream values.
+    Terminal operations are eagerly loaded.
+	They produce end result.
+	
+	forEach(), toArray(), reduce(), collect(), min(), max(), count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()
+
+-- `map` transforms each element in a stream into another form individually, 
+	Use `map` for one-to-one transformations 
+ 
+-- `flatMap` transforms each element into a stream and flattens the result. 
+	and `flatMap` for one-to-many transformations, such as flattening nested collections
+
+--Streams are lazy because intermediate operations are not evaluated unless terminal operation is invoked.
+	Each intermediate operation creates a new stream, stores the provided operation/function and return the new stream.
+	The pipeline accumulates these newly created streams.
+	The time when terminal operation is called, traversal of streams begins and the associated function is performed one by one.
+	Parallel streams don't evaluate streams 'one by one' (at terminal point). The operations are rather performed simultaneously, depending on the available cores.
+
+-- What is a Collision?
+
+	Collisions in HashMaps are a normal occurrence due to the nature of hashing.
+	Sometimes, different keys can end up with the same hash code. 
+	When this happens, the data (key-value pairs) will be assigned to the same box (bucket). This is called a collision.
+	A collision happens when two different keys end up with the same hash code and share the same bucket.
+	To handle collisions, we use techniques like Separate chaining (storing multiple entries in the same bucket with linked lists) 
+	and Open addressing (finding another empty bucket).
+	we can handle them efficiently and maintain fast access to our data. By understanding these methods, you can ensure your HashMaps run smoothly even when faced with collisions!
+
+-- Contract between hashCode and equals 
+
+	In Java states that if two objects are considered equal using the equals method, 
+	then their hashCode values must also be equal; essentially, if x.equals(y) is true, then x.hashCode() must equal y.hashCode()
+
+-- HashCode() method
+	Hashing is a process of converting an object into integer form by using the method hashCode(). It’s necessary to write the hashCode() method properly for better performance of HashMap.
+
+-- equals() method:
+	This method is used to check whether 2 objects are equal or not. This method is provided by the Object class. You can override this in your class to provide your implementation. 
+	HashMap uses equals() to compare the key to whether they are equal or not. If the equals() method return true, they are equal otherwise not equal. 
+
+-- HashMap Improvements in Java 8
+	In Java 8, HashMap replaces the linked list with another useful data structure i.e. binary tree on breaching a certain threshold, which is known as TREEIFY_THRESHOLD. Once this threshold is reached the linked list of Entries is converted to the TreeNodes which reduces the time complexity from O(n) to O(log(n)).
+
+-- TreeMap works well in situations where ordered key-value pairs are necessary since it preserves ascending order. 
+	It also only includes distinct components, guaranteeing that every key corresponds to a single value. 
+	TreeMap can have more than one null value, even if it cannot have a null key.
+
+
+--IdentityHashMap?
+	IdentityHashMap uses reference equality (==) instead of the equals() method to compare keys.
+	This means that two objects are considered equal only if they reference the same memory location.
+	IdentityHashMap performs better than HashMap.
+	IdentityHashMap uses a simple liner probe hash table.
+	Choosing the appropriate data structure depends on the specific requirements of your application and how you want to handle object equality.
+	
+-- Hashmap internal working? 
+	HashMap is work based on key-value pairs.
+	HashMap allows one null key and multiple null values.
+	HashMap is non-synchronized, It is not-thread safe and can't be shared between many threads without proper synchronization code.
+	HashMap is fast.
+	Iterator in HashMap is fail-fast.
+
+-- Java HashSet
+	HashSet class is non-synchronized, Not-thread safe. 
+	Java HashSet class is used to create a collection that uses a hash table for storage. 
+	HashSet stores the elements by using a mechanism called hashing.
+	HashSet contains unique elements only.
+	HashSet allows null value.
+	HashSet doesn't maintain the insertion order. Here, elements are inserted on the basis of their hashcode.
+	HashSet is the best approach for search operations.
+	It inherits the AbstractSet class and implements Set interface.
+	The initial default capacity of HashSet is 16, and the load factor is 0.75.
+
+-- Hashtable 
+	It is synchronized. It is thread-safe and can be shared with many threads.
+	Hashtable doesn't allow any null key or value.
+	Hashtable is a legacy class.
+	Hashtable is internally synchronized and can't be unsynchronized.
+	Enumerator in Hashtable is not fail-fast. 
+
+-- ConcurrentHashMap 
+	It is an enhancement of HashMap as we know that while dealing with Threads 
+	in our application HashMap is not a good choice because performance-wise HashMap is not up to the mark.
+	ConcurrentHashMap is a thread-safe implementation of the Map interface in Java, which means multiple threads can access it simultaneously without any synchronization issues.
+	One of the key features of the ConcurrentHashMap is that it provides fine-grained locking, meaning that it locks only the portion of the map being modified, rather than the entire map.
+
+	ConcurrentHashMap class is synchronized and thread-safe i.e. multiple threads can operate on a single object without any complications.
+	At a time any number of threads are applicable for a read operation without locking the ConcurrentHashMap object which is not there in HashMap.
+	In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level.
+	The default concurrency-level of ConcurrentHashMap is 16.
+	In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updated in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads.
+	Inserting null objects is not possible in ConcurrentHashMap as a key or value.
+
+--In Java, fail-fast and fail-safe are approaches to handling errors in a system. 
+	Fail-fast systems stop immediately when an error occurs, while    
+	fail-safe systems try to recover and continue.
+	fail-safe are approaches ensure the error caught immediatly
+
+-- Fail-fast
+	Definition: Stops immediately when an error occurs 
+	Goal: Prevents further damage and maintains system integrity 
+	Benefits: Immediate debugging, lower risk of cascading failures, and quicker detection and resolution of bugs 
+	Example: Java's null produces a NullPointerException that fails the code instantly 
+
+-- Fail-safe
+	Definition: Continues to operate even when errors occur 
+	Goal: Provides uninterrupted service and may attempt to recover from errors 
+	Benefits: Handles errors gracefully, making them better suited for mission-critical systems and volatile environments 
+	Example: JavaScript uses “undefined” which can propagate through the system 
+
+-- Rules for creating Java constructor
+    There are two rules defined for the constructor.
+
+-Constructor name must be the same as its class name
+    A Constructor must have no explicit return type
+	A Java constructor cannot be abstract, static, final, and synchronized
+
+-- Java throw Keyword
+   The "throw" keyword in Java is used to explicitly throw an exception. It disrupts the normal flow of the program by transferring control to the nearest catch block that can handle the thrown exception. When an exception occurs within a method, the method creates an exception object and throws it using the "throw" keyword.
+
+-- Java throws Keyword
+   On the other hand, the "throws" clause is used in method signatures to indicate that the method may throw certain types of exceptions during its execution. It doesn't actually throw the exception; instead, it declares that the method may throw exceptions of specified types, thereby alerting the caller to handle them appropriately.
+
+-If hashcode of two objects are same in java
+	It is possible for two different objects to have the same hashcode. This is known as a hash collision.
+	When two unequal objects have the same hash value, this causes a collision in the hash table, because both objects want to be in the same slot (sometimes called a bucket). The hash algorithm must resolve such collisions.
+	1. Look for the next empty slot in the hash table and put the object there. Pros: easy to implement, cons: can lead to clustering of objects and degrade performance, capacity may be exceeded
+
+-- New and old Garbage collection?
+	How do the three generations interact with / relate to each other?
+	All objects, except for large ones, are first allocated to the young generation. If an object remains alive after x number of garbage collection cycles, it gets promoted to the old/tenured generation. Hence, we can say that the young generation contains short lived objects, while the old generation contains objects that will have a long life. The permanent generation does not interact with the other two generations. 
+
+-- finalize() method in Java is used to perform cleanup tasks on an object before it's garbage collected: 
+	Close resources: Close external resources like files or network connections
+	Release native resources: Prevent leaks by releasing native resources
+	Implement custom cleanup logic: Define custom cleanup logic
+	Profile and debug: Check when the garbage collector reclaims objects.
+
+	* However, as of Java 9, finalize() has been deprecated in favor of more modern resource management techniques like try-with-resources. Some say that the code you put in finalize() is often buggy or useless, and that the garbage collector is smart enough to do the job itself.
+
+-- OutOfMemoryError What Is a Memory Leak
+	A Memory Leak is a situation where there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory, and therefore, they’re unnecessarily maintained.
+	A memory leak is bad because it blocks memory resources and degrades system performance over time. If not dealt with, the application will eventually exhaust its resources, finally terminating with a fatal java.lang.OutOfMemoryError.
+
+	There are two different types of objects that reside in Heap memory, referenced and unreferenced. Referenced objects are those that still have active references within the application, whereas unreferenced objects don’t have any active references.
+
+	The garbage collector removes unreferenced objects periodically, but it never collects the objects that are still being referenced. This is where memory leaks can occur:
+
+	Memory Leak Through static Fields
+	Through Unclosed Resources
+	Improper equals() and hashCode() Implementations
+	
+-- What Happens When There Is Not Enough Heap Space to Accommodate Storage of New Objects?
+	If there is no memory space for creating a new object in Heap, Java Virtual Machine throws OutOfMemoryError or more specifically java.lang.OutOfMemoryError heap space.
+
+-- ClassNotFoundException:
+	When it occurs:
+	This exception is thrown when the Java Virtual Machine (JVM) cannot find a class that your code is trying to load at runtime. This can happen if:
+	The class file is not present in the classpath.
+	You are trying to load a class using its fully qualified name (e.g., Class.forName("com.example.MyClass")), but the class does not exist.
+	You are using reflection to dynamically load a class that is not available.
+	How to fix:
+	Make sure the required JAR file containing the class is included in your project's classpath.
+	Double-check the fully qualified name of the class you are trying to load.
+
+-- NoSuchMethodError:
+	When it occurs:
+	This error is thrown when the JVM cannot find a method with the specified signature in a class that is already loaded. This can happen if:
+	You are calling a method that does not exist in the class.
+	You are calling a method with the wrong number or types of arguments.
+	You are trying to call a method on an object that is not of the correct type.
+	You are using a version of a library that is incompatible with the version your code was compiled against.
+	How to fix:
+	Verify that the method you are calling exists in the class with the correct signature.
+	Check the types of arguments you are passing to the method.
+	Make sure you are working with the correct object type.
+	Ensure that you are using compatible versions of libraries.
+
+--Shutdown Hooks are a special construct that allows developers to plug in a piece of code to be executed when the JVM is shutting down. 
+
+Can we create object of interface in Java?
+No
+
+id          name                 managerId
+----------- -------------------- -----------
+1           Spartacus            NULL
+2           Spartacus            1
+
+select e.name
+from employees as e 
+left outer join public.employees as e1 on e.id = e1."managerId"
+where e1.id IS NULL
+
+--------------------------------------------------
+SOLID Principal
+
+1. Single resposiblity principal -- one class should use for single task
+This principle states that “A class should have only one reason to change” which means every class should have a single responsibility or single job or single purpose. In other words, a class should have only one job or purpose within the software system.
+
+Imagine a baker who is responsible for baking bread. The baker’s role is to focus on the task of baking bread, ensuring that the bread is of high quality, properly baked, and meets the bakery’s standards.
+
+However, if the baker is also responsible for managing the inventory, ordering supplies, serving customers, and cleaning the bakery, this would violate the SRP.
+
+2. Open/closed pricipal -- This principle states that “Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification” which means you should be able to extend a class behavior, without modifying it.
+
+Let’s understand Open/Closed Principle using an example:
+
+Imagine you have a class called PaymentProcessor that processes payments for an online store. Initially, the PaymentProcessor class only supports processing payments using credit cards. However, you want to extend its functionality to also support processing payments using PayPal.
+
+Instead of modifying the existing PaymentProcessor class to add PayPal support, you can create a new class called PayPalPaymentProcessor that extends the PaymentProcessor class. This way, the PaymentProcessor class remains closed for modification but open for extension, adhering to the Open-Closed Principle
+
+
+3. Liskov substitution principal -- according to this principle “Derived or child classes must be substitutable for their base or parent classes“. This principle ensures that any class that is the child of a parent class should be usable in place of its parent without any unexpected behavior.
+
+LSP is nearly related to inheritance, as it focuses on the behavior of derived classes when they inherit from a base class. It ensures that the derived class can extend or specialize the behavior of the base class without breaking any contracts.
+
+One of the classic examples of this principle is a rectangle having four sides. A rectangle’s height can be any value and width can be any value. A square is a rectangle with equal width and height. So we can say that we can extend the properties of the rectangle class into square class.
+
+In order to do that you need to swap the child (square) class with parent (rectangle) class to fit the definition of a square having four equal sides but a derived class does not affect the behavior of the parent class so if you will do that it will violate the Liskov Substitution Principle.
+
+4. Interface segrigation principal -- It states that “do not force any client to implement an interface which is irrelevant to them.
+suppose if you enter a restaurant and you are pure vegetarian. The waiter in that restaurant gave you the menu card which includes vegetarian items, non-vegetarian items, drinks, and sweets.
+
+In this case, as a customer, you should have a menu card which includes only vegetarian items, not everything which you don’t eat in your food. Here the menu should be different for different types of customers.
+
+5. Dependency inversion pricipal -- The Dependency Inversion Principle (DIP) is a principle in object-oriented design that states that “High-level modules should not depend on low-level modules. Both should depend on abstractions“. Additionally, abstractions should not depend on details. Details should depend on abstractions.
+
+In a software development team, developers depend on an abstract version control system (e.g., Git) to manage and track changes to the codebase. They don’t depend on specific details of how Git works internally.
+-----------------------------------------------------------------------------------------------
+
+Design patterns in Java
+
+Design patterns in Java are communicating objects and classes that are customized to solve a general design problem in a particular context. Software design patterns are general, reusable solutions to common problems that arise during the design and development of software. They represent best practices for solving certain types of problems and provide a way for developers to communicate about effective design solutions.
+
+Types of Design patterns in Java
+
+1. Creational Design Patterns in Java
+2. Structural Design Patterns in Java
+3. Beheavioral Disign pattern
+
+1.1 Factory Method
+Factory Method is a creational design pattern, that provide an interface for creating objects in superclass, but subclasses are responsible to create the instance of the class.
+
+1.2 Abstract Factory Method
+Abstract Factory Method is a creational design pattern, it provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+1.3 Builder Method
+Builder Method is a creational design pattern, it provides an interface for constructing an object and then have concrete builder classes that implement this interface to create specific objects in a stepwise manner.
+
+1.4 Prototype Method
+Prototype Method is a creational design pattern, it provide to create new objects with the same structure and initial state as an existing object without explicitly specifying their class or construction details.
+
+1.5 Singleton Method
+Singleton Method is a creational design pattern, it provide a class has only one instance, and that instance provides a global point of access to it.
+Singleton classes are used for logging, driver objects, caching, and thread pool, database connections.
+
+2. Structural Design Patterns in Java
+Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.
+
+The structural design patterns simplifies the structure by identifying the relationships.
+These patterns focus on, how the classes inherit from each other and how they are composed from other classes.
+
+Adapter Pattern
+Adapting an interface into another according to client expectation.
+
+Bridge Pattern
+Separating abstraction (interface) from implementation.
+
+Composite Pattern
+Allowing clients to operate on hierarchy of objects.
+
+Decorator Pattern
+Adding functionality to an object dynamically.
+
+Facade Pattern
+Providing an interface to a set of interfaces.
+
+Flyweight Pattern
+Reusing an object by sharing it.
+
+proxy Pattern
+Representing another object.
+
+3.Behavioral Design Patterns
+Behavioral design patterns are concerned with the interaction and responsibility of objects.
+
+In these design patterns, the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.
+
+That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.

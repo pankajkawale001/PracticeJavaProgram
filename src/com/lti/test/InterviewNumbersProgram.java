@@ -7,12 +7,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class InterviewFilterNumberList {
+public class InterviewNumbersProgram {
 	public static void main(String[] args) {
+
+		// Fabonacci Series by java stream
+		Stream<Long> fibonacciStream = Stream.iterate(new long[] { 0, 1 }, p -> new long[] { p[1], p[0] + p[1] })
+				.limit(10).map(p -> p[0]);
+		fibonacciStream.forEach(System.out::println);
 
 		int a[] = { 1, 4, 5, 2, 12, 34, 2, 11 };
 
@@ -23,6 +29,14 @@ public class InterviewFilterNumberList {
 		System.out.println("Find duplicate number from int array" + duplicate);
 		// O/p=2
 
+		List<Integer> numberList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+		List<Integer> limit = numberList.stream().limit(3).collect(Collectors.toList());
+		System.out.println("Print Limit of numbers: " + limit);
+
+		List<Integer> skip = numberList.stream().skip(3).collect(Collectors.toList());
+		System.out.println("Skip initial numbers: " + skip);
+
 		List<Integer> listOfIntegers = Arrays.asList(45, 15, 56, 15, 24, 75, 31, 89, 31);
 
 		Set<Integer> duplicateNums = listOfIntegers.stream().filter(x -> !set.add(x)).collect(Collectors.toSet());
@@ -31,6 +45,9 @@ public class InterviewFilterNumberList {
 
 		List<Integer> reverse = listOfIntegers.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 		System.out.println("List Of Integers into reverse order: " + reverse);
+
+		List<Integer> distinctNumber = listOfIntegers.stream().distinct().collect(Collectors.toList());
+		System.out.println("Print Distinct numbers from the list: " + distinctNumber);
 
 		// From the given list of integers, print the numbers which are multiples of 5.
 		List<Integer> multipleOf5 = listOfIntegers.stream().filter(i -> i % 5 == 0).collect(Collectors.toList());
@@ -86,36 +103,19 @@ public class InterviewFilterNumberList {
 		int[] array3 = new int[] { 8, 1, 9, 5, 6 };
 
 		int[] merged = IntStream.concat(Arrays.stream(array1), Arrays.stream(array2)).sorted().distinct().toArray();
-		System.out.println("Merge 2 unsorted arrays into single sorted array without duplicates?" + Arrays.toString(merged));
+		System.out.println(
+				"Merge 2 unsorted arrays into single sorted array without duplicates?" + Arrays.toString(merged));
 
 		Stream<Integer> add = Stream.of(array1, array2, array3).flatMapToInt(Arrays::stream).boxed();
 		Object[] mergedArray = add.sorted().distinct().toArray();
 		System.out.println("Merge multiple unsorted arrays into single sorted array without duplicates? "
 				+ Arrays.toString(mergedArray));
 
-		Map<Integer, String> map = new HashMap<>();
-		map.put(1, "Pankaj");
-		map.put(2, "Pawan");
-		map.put(3, "Neha");
-		map.put(4, "Minu");
-		map.put(5, "Pintoo");
-
-		// Iterate Map
-		for (Map.Entry m : map.entrySet()) {
-			System.out.println("Iterate Map: "+m.getKey() + " " + m.getValue());
-		}
-
-		// Filter the map to keep only keys >= 3
-		Map filteredMap = map.entrySet().stream().filter(entry -> entry.getKey() >= 3)
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-		System.out.println("Filter the map to keep only keys >= 3:" + filteredMap);
-
-		// Filter the map to keep only Values starting with 'P'
-		Map filteredMapValue = map.entrySet().stream().filter(entry -> entry.getValue().startsWith("P"))
-				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-
-		System.out.println("Values starting with 'P' : " + filteredMapValue);
+		// Sort the array based on the second unit digit in ascending order
+		Integer[] numbersArray = { 25, 52, 88, 41, 14, 69 };
+		Arrays.sort(numbersArray, Comparator.comparingInt(num -> num % 10)); // n % 10 extracts the unit digit
+		// Print the sorted array
+		System.out.println(Arrays.toString(numbersArray)); // Output: [41, 52, 14, 25, 88, 69]
 
 	}
 }

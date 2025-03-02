@@ -1,0 +1,397 @@
+Angular youtube channel: https://www.youtube.com/watch?v=QjaNv7s1gW0&t=1510s
+Swagger API Link= https://freeapi.miniprojectideas.com/index.html
+Bootstrap= https://www.w3schools.com/bootstrap5/bootstrap_button_groups.php
+url: localhost:4209
+
+node --version -to check which node version are installed in system
+npm --version -to check which angular version are installed in system
+npm install -g @angular/cli -to install angular globally
+ng new MyAngularApp  -To create new angular project.
+cd projectname and Enter
+code . -To open your angular project into visual studio code.
+ng serve -To run your angular application
+npm install -g npm@6.14.12 OR npm install -g npm@version-number OR npm install -g npm@latest -To downgrade the npm version
+npm i bootstrap -- To add bootstrap in to a project
+ng serve --port 4209
+
+-- What is Angular
+	Angular is a framework is used for building a single page client application using HTML and TypeScript.
+	Angular writen in Type Script.
+	Angular managed by google and its having a long term support.
+
+-- What is Angular CLI.
+	Angular CLI is a commandline interface tool.
+	It is used for intialize, develop, scaffold and maintain angular applications directly from command shell.
+	install angular cli- npm install -g @angular/cli
+	
+-- Advantages of angular
+	Angular provides cross platform development.
+	improved speed and performance.
+	faster development process.
+	Readable and testable code.
+	More lightweight web application.
+	Open source.
+	
+-- Angular Life Cycle hooks
+	Life cycle hooks are the set of methods that are executed at specific moment during the lifecycle of component.
+	Modern front end frameworks moves from one state to anothes state
+	In each state change, assets change (url, data, router, api).
+
+	1. ngOnChanges - This happpens frequently , so any operation you perform here impact performance significantly.
+	2. ngOnInit - Initialized the directive or component after angular first displays the data bound properties
+	   and set the directive or components input properties.
+	3. ngDoCheck - Detect and act upon changes that angular cant or wont detects on its own.
+	4. ngAfterContentInit -After the projected content (content projected into the component with <ng-content>) has been initialized, 
+	   this hook is invoked.
+	5. ngAfterContentChecked -This hook is invoked at the end of each change detection cycle for the projected content.
+	6. ngAfterViewInit - After the component's view (including its children) has been fully initialized, this hook is called.
+	7. ngAfterViewChecked - Respond after angular check the components views and child view that contains the directive.
+	8. ngOnDestroy- Cleanup just before angular destroys and directive or componanet. Unsubscribe obsevable 
+       and detached the event hadler to avoid memory leaks.
+
+-- What is Components?
+	Component is a main building block for angular.
+	Its a combination of Html Template, Typescript class and CSS selectors.
+	It has two types 1. Standalone and 2. Module based.
+	Standalone has not depend on the any of the module.
+
+
+-- What is routing in angular?
+	Routing is URL pattern matching.
+	Rout is used to handle the navigation from one view to the next.
+	Routs-  this the class is used to map the component and path.
+	router-outlet- this is the place to load the active componant.
+	routerLink- this is the directive to navigate diffrent route
+
+-- What is Routing Guards?
+	Guards are interfaces already available natively in angular the let the control access to routes 
+	based on conditions we provide in the class of the interface.
+	
+- What is Eager loading
+	Loading modules befor application starts.
+	its good for small application but it will affect the performance web application
+
+-- What is Lazy loading.
+	Angular provides a powerful feature called "Lazy Loading" which allows developers to load modules and components on-demand. 
+	Lazy loading is technique that allow user to defer loading of certain parts of an angular application. 
+	Parts mean certain modules in the application. 
+	These modules are loaded dynamically when a user navigate to a route associated with that module, 
+	It will reduce the initial load time as well.
+
+-- How to implement Lazy loading
+	We can update our app.router.ts file to add the actual routes. Also don't forget to add router-outlet 
+	tag in the app.component.html and import RouterOutlet to app.component.ts. 
+	Finally, we can add the buttons to handle navigation between different routes, for this to work we will need to import the RouterLink.
+	<!-- app.component.html -->
+	<button routerLink="home">Home</button>
+	<button routerLink="services">Services</button>
+	<button routerLink="about-us">About Us</button>
+	<button routerLink="contact-us">Contact Us</button>
+
+	<router-outlet></router-outlet>
+
+-- What is dependency injection?
+	Most powerful feature of angular
+	adding or providing the facilaty to the componant at run time
+	Used to inject service
+
+-- What is bootstraping module?
+	Process of loading index.html or app level module or componant is called bootstraping module.
+	Module is bootstraping module from which the application execution starts.
+	By default app-module is bootstraping module.
+
+
+-- What are Template in angular
+	Its a hirarchcal represantation
+	Template is the form of HTML pluse additional feature
+	Template tells the angular how to render componant
+
+--diff between Component, Modules, Services
+	Component - most building block of angular application - @component
+	Modules- Multiple component is combined is called modules. e.g. Modules, directives, pipes, services, @ngModel
+	
+-- What is Services
+	Angular services provide a way for you to saperate angular app data and function that can be used by multiple componant in your app.
+	Angular service can be used in any of the component or directives, allowing you to reuse code accross your application.
+	By using httpClient we can consume external api
+	You can inject the features of this class into another component @Injectable
+
+-- Types of Data Binding?
+	Data binding in Angular is a feature that automatically updates the view based on changes to the model, 
+	or vice versa. It's used to create interactive web applications with dynamic HTML
+	1. Interpolation binding - {{firstName}}
+	2. Property / type binding - [value]="firstName"
+	3. Two way data binding using ngModel - [(ngModel)]="firstName"
+	4. Event Binding- (click)="showWelcomeAlert()
+
+--What is Two way data binding in angular
+	Sharing data between componant class and Template
+	If class data change it will reflect tamplate and vice versa
+	its a combination of event and property binding
+	Syntax - [(ngModel)] - banana box for data binding
+	() - This used for event binding and
+	[] - used for attribute binding
+
+-- What is event binding.
+	Event binding lets you listen for and respond to user actions such as keystrokes, mouse, movements, clicks and touches.
+	Event Binding syntax- <button (click)="onSave()"> Save</button>
+
+-- Directives
+	Directives are classes that add additional behavior to elements in your Angular applications.
+	1. Structural - Responsible for change the structure of the Dom -- ngIf, ngFor, ngSwitch
+	2. attribute - It can add extra beheavior in existing element - ngClass, ngStyle and ngModel
+	ng-app, ng-bind
+	Controle flow - @ngIf, @ngFor, @ngSwitch
+
+
+-- What is Pipes in angular
+	Pipe is simple function expression
+	Pipes take one input and transform to the output 
+	1. Built-in Pipes
+			DatePipe
+			UpperCasePipe 
+			LowerCasePipe 
+			CurrencyPipe 
+
+	2. Custom Pipes
+	mport { Pipe, PipeTransform } from '@angular/core';
+	@Pipe({
+	name: 'custom'
+	})
+	
+	@Pipe is used to create custome pipes in angular and implement PipeTransform class
+	export class CustomPipe implements PipeTransform {
+		transform(value: any): any {
+		if (typeof value !== 'string') {
+			return value;
+			}
+			return value.charAt(0).toUpperCase() + value.slice(1);
+		}
+		}
+
+-- What is Decorator in angular
+	With decorator we can configure ts class
+	Using decorator we can pass the metadatato the class
+	e.g. @Component decorator
+	Metadata - > @Component({Selector, templateUrl,styleUrl})
+
+
+--What are the ways of communication in angular?
+	In Angular, the primary ways to facilitate communication between components are through data binding using the 
+	
+	@Input decorator is used to pass data from a parent component to a child component. 
+	The child component can access the input property to get the data passed from the parent component.
+	
+	@Output decorator is used to emit events from a child component to a parent component. 
+	The parent component can subscribe to these events and execute a function when the event is emitted.
+	
+	ViewChild: The @ViewChild decorator is used to access a child component's properties and methods from a parent component. 
+	This method of communication is helpful when you need to call a child component's methods or access its properties directly.
+
+-- How to improve performance in angular
+	To improve performance in Angular, key strategies include: using lazy loading to load modules only when needed, 
+	implementing the "OnPush" change detection strategy to minimize unnecessary checks, 
+	utilizing Angular Universal for server-side rendering, 
+	optimizing image sizes, minimizing HTTP requests, and 
+	ensuring proper unsubscribing from observables to prevent memory leaks. 
+
+-- What is Angular material?
+	Its provide the UI library
+	It provides the vast toolkit for UI
+	Benefits- fast development speed.
+	It provides reusable componants.
+
+-- What is metadata?
+	Metadata - To configure ts class for that metadata used
+	@Component({
+	  selector: 'app-client-project',
+	  imports: [ReactiveFormsModule,DatePipe],
+	  templateUrl: './client-project.component.html',
+	  styleUrl: './client-project.component.css'
+	})
+
+-- What is FORMS?
+	Angular form are used to handle the user inputs such as validation, value assigning, and getting.
+	There are two types of forms
+	1. Template driven form
+	2. Reactive forms
+
+-- What is Template driven form?
+	A template driven form is a simplest way to build a form in anglar.
+	It usesangular two way data binding directive (ngModel) to create and manage the underlying form instance. Additionally
+	
+-- Reactive forms?	
+	Reactive form provide accessto information about a given controlthrough properties and methods provided with each instance.
+	Reactive form also known as model driven forms.
+	Reactive form are based on reactive programming principles and allows you to manage form state and validation programatically.
+	
+	
+-- What is an HTTP Interceptor?
+	These interceptors allow developers to intercept and handle HTTP requests and responses globally within an application.
+	HTTP Interceptors in Angular are classes that implement the HttpInterceptor interface.
+	They can be used to perform various tasks related to HTTP requests and responses, 
+	such as adding headers, adding token in each request / respone, handling errors, modifying the request or response data, 
+	logging, caching, authentication, etc.
+	HttpInterceptor defines a single method called intercept, which takes two parameters: the HttpRequest and the HttpHandler.
+
+
+-- Async and Await in JavaScript
+	Async and Await in JavaScript is used to simplify handling asynchronous operations using promises. 
+	By enabling asynchronous code to appear synchronous, they enhance code readability 
+	and make it easier to manage complex asynchronous flows.
+	Improved Readability: Async and Await allow asynchronous code to be written in a synchronous style, 
+	making it easier to read and understand.
+	Error Handling: Using try/catch blocks with async/await simplifies error handling.
+	Avoids Callback Hell: Async and Await prevent nested callbacks and complex promise chains, making the code more linear and readable.
+	Better Debugging: Debugging async/await code is more intuitive since it behaves similarly to synchronous code.
+
+-- Providers in angular
+	Providers are just the instance of the service.
+	You can create them once and use them everywhere or you can create multiple instances.
+	All the services are registered with Angular but they can't be used until we instantiate them. 
+	So first, we have to instantiate the services and we do that by using providers.
+	To use the service globally, we can place the providers in AppModule. By doing this,
+	the instance of that service is created and all the components or other services in the 
+	app will use the same instance.
+
+-- Promises
+	A Promise in AngularJS is an object that represents the eventual completion or failure of an asynchronous operation. 
+	It is a way to handle asynchronous operations without blocking the rest of the application.
+	A Promise has a .then() method to specify what will happen when the Promise is resolved 
+	and a .catch() method to handle any errors that may occur. A Promise can be in one of three states:
+
+	Pending: Initial state, where the operation has not started yet.
+	Fulfilled: The operation has been completed successfully.
+	Rejected: The operation has failed.
+
+-- Observables
+	An Observable is a more powerful and flexible way to handle asynchronous operations, provided by the RxJS library.
+
+	An Observable is a stream of data that can be observed over time. It is similar to a Promise, 
+	but it can emit multiple values, not just a single one, which makes it suitable for operations such as handling events, 
+	streaming data, etc. Observables have operators that can be used to transform the data stream, such as .map(), .filter(), and .reduce().
+
+	Key Characteristics of Observables:
+	Multiple Values: An observable can emit multiple values over time.
+	Lazy Execution: An observable does not execute until it is subscribed to.
+	Operators: RxJS provides a wide range of operators to transform, filter, and combine observables.
+
+-- Server-side rendering, Why use SSR?
+	The main advantages of SSR as compared to client-side rendering (CSR) are:
+	Improved performance: SSR can improve the performance of web applications by delivering fully rendered HTML to the client,
+	which can be parsed and displayed even before the application JavaScript is downloaded. 
+	This can be especially beneficial for users on low-bandwidth connections or mobile devices.
+	Improved Core Web Vitals: SSR results in performance improvements that can be measured using Core Web Vitals (CWV) statistics, 
+	such as reduced First Contentful Paint (FCP) and Largest Contentful Paint (LCP), as well as Cumulative Layout Shift (CLS).
+	Better SEO: SSR can improve the search engine optimization (SEO) of web applications 
+	by making it easier for search engines to crawl and index the content of the application.
+
+-- To improve the performance of an Angular application, 
+
+	you can use techniques like lazy loading, 
+	ahead-of-time compilation, and server-side rendering. You can also optimize images, use pure pipes, and cache data. 
+
+	1. Use lazy loading
+	2. Avoid using ngIf with complex expressions
+	3. Use trackBy in ngFor loops
+	4. Use immutable data structures
+	5. Use RxJS and Singals together for reactive programming
+	6. Use AOT compilation
+	7. Use Angular Universal for server-side rendering
+	8. Use performance profiling tools
+	9. Optimize your images
+	10. Use a caching strategy
+	
+-- Describe a scenario where you implemented authentication and authorization in an Angular application.
+
+	Authentication and authorization are important security features for any web application, including Angular applications. 
+	Here is an example scenario where you might implement authentication and authorization in an Angular application:
+
+	Suppose you are working on a social media platform where users can create accounts, post content, and interact with each other. 
+	To ensure the security and privacy of user data, you need to implement a login system that authenticates users 
+	and grants access to specific features based on their roles and permissions.
+
+	To implement authentication and authorization in this scenario, you can follow these steps:
+
+	Create a login component that accepts user credentials and sends them to a login service for authentication.
+	Create an authentication service that verifies user credentials and sets an authentication token or session cookie.
+	Create an authorization service that checks user roles and permissions and grants access to specific features.
+	Use route guards to restrict access to specific pages or features based on user roles and permissions.
+	Use the HttpClient service to make API requests that require authentication and authorization.
+	Use the HttpInterceptor interface to add authorization headers to outgoing API requests.
+	Here are some additional tips for implementing authentication and authorization in Angular:
+
+	Use the localStorage or sessionStorage objects to store authentication tokens or session cookies.
+	Use JSON Web Tokens (JWT) for secure authentication and authorization.
+	Implement password hashing and encryption to protect user passwords and sensitive data.
+	Use role-based access control (RBAC) or attribute-based access control (ABAC) to define user roles and permissions.
+
+-- 5 ways to unsubscribe in Angular to avoid memory leaks:
+
+	Using the Subscription variable. This is the most common way to unsubscribe from an observable in Angular. 
+	When you subscribe to an observable, you get a Subscription object back. 
+	You can use this object to unsubscribe from the observable at any time by calling its unsubscribe() method.
+
+	const subscription = observable$.subscribe(value => {
+	  // Do something with the value.
+	});
+
+	// Unsubscribe from the observable.
+	subscription.unsubscribe();
+	Using the takeUntil() operator. The takeUntil() operator allows you to unsubscribe from an observable when a certain condition is met.
+	For example, you could use the takeUntil() operator to unsubscribe from an observable when a component is destroyed.
+
+	const subscription = observable$.pipe(takeUntil(componentWillDestroy$));
+
+	// Unsubscribe from the observable when the component is destroyed.
+	componentWillDestroy$.subscribe(() => subscription.unsubscribe());
+	Using the take() operator. The take() operator allows you to unsubscribe from an observable 
+	after a certain number of values have been emitted. For example, you could use the take() operator to unsubscribe 
+	from an observable after 10 values have been emitted.
+
+	const subscription = observable$.pipe(take(10));
+
+	// Unsubscribe from the observable after 10 values have been emitted.
+	subscription.unsubscribe();
+	Using the first() method. The first() method allows you to unsubscribe from an observable after the first value has been emitted. 
+	For example, you could use the first() method to unsubscribe from an observable after the first user has logged in.
+
+	const subscription = observable$.pipe(first());
+
+	// Unsubscribe from the observable after the first value has been emitted.
+	subscription.unsubscribe();
+	Using the firstValueFrom() method. The firstValueFrom() method allows you to unsubscribe 
+	from an observable after the first value has been emitted, but it also allows you to listen for additional values. 
+	For example, you could use the firstValueFrom() method to unsubscribe from an observable after the first user has logged in, but you could also listen for additional values, such as the user's name and email address.
+
+	const subscription = observable$.pipe(firstValueFrom());
+
+	// Unsubscribe from the observable after the first value has been emitted.
+	subscription.unsubscribe();
+	It is important to unsubscribe from observables in Angular to avoid memory leaks. If you do not unsubscribe from an observable, 
+	it will continue to run in the background, even if the component that subscribed to it is no longer visible. 
+	This can lead to memory leaks and performance problems.
+
+-- Difference between null and undefined in JavaScript?
+   Use null when you want to represent the intentional absence of a value, 
+   and undefined when a variable has not been assigned a value
+	console.log(null === undefined) // false (not the same type)
+	console.log(null == undefined) // true (but the "same value")
+	console.log(null === null) // true (both type and value are the same)
+
+-- Difference between “ == “ and “ === “ operators.
+	Both are comparison operators. The difference between both the operators is that “==” is used to compare values 
+	whereas, “ === “ is used to compare both values and types.
+
+	Example:
+	var x = 2;
+	var y = "2";
+	(x == y)  // Returns true since the value of both x and y is the same
+	(x === y) // Returns false since the typeof x is "number" and typeof y is "string"
+	
+--- Declaring variables using var, let and const.
+	keyword				const	let		var
+	global scope		no		no		yes
+	function scope		yes		yes		yes
+	block scope			yes		yes		no
+	can be reassigned	no		yes		yes
