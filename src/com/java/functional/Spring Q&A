@@ -105,27 +105,33 @@ To check the health of a Spring Boot application, you can use the Spring Boot Ac
 Go to the browser and type HTTP localhost:8080/actuator/health 
 The endpoint will show the application's status, including the custom health indicator 
 
-Dependency injection aims to separate the concerns of constructing objects and using them, leading to loosely coupled programs. The pattern ensures that an object or function that wants to use a given service should not have to know how to construct those services.
-
 -- Which dependency injection is better in Spring?
+	Dependency injection aims to separate the concerns of constructing objects and using them, leading to loosely coupled programs. 
+	The pattern ensures that an object or function that wants to use a given service should not have to know how to construct those services.
 
-We can say that the constructor dependency injection is best in Spring for various reasons. It has better readability, supports immutability, and is state-safe(the object is instantiated to the entire state or not at all.
+	We can say that the constructor dependency injection is best in Spring for various reasons. It has better readability, supports immutability, 
+	and is state-safe(the object is instantiated to the entire state or not at all.
+	
+	Readability
+	Constructor injection is more readable than other types of dependency injection. 
+	Immutability
+	Constructor injection promotes immutability, which ensures that an object is in a valid state when it's created. 
+	State safety
 
-Readability
-Constructor injection is more readable than other types of dependency injection. 
-Immutability
-Constructor injection promotes immutability, which ensures that an object is in a valid state when it's created. 
-State safety
-Constructor injection is state-safe, meaning that an object is instantiated to its entire state or not at all.
+-- Constructor injection is state-safe, meaning that an object is instantiated to its entire state or not at all.
 
--- Setter injection is another type of dependency injection in Spring, but it's generally only recommended for optional dependencies. Setter injection provides more flexibility and control over dependencies, and it makes testing easier. However, it can also involve a lot of boilerplate, as each bean needs a setter and each setter needs to be decorated with an annotation.
+-- Setter injection is another type of dependency injection in Spring, but it's generally only recommended for optional dependencies. 
+    Setter injection provides more flexibility and control over dependencies, and it makes testing easier. However, it can also involve a lot of boilerplate, 
+	as each bean needs a setter and each setter needs to be decorated with an annotation.
 
--Spring profiling
-Spring Boot Profiles are a powerful tool for managing environment-specific configurations.
-They promote flexibility and maintainability by allowing an application to adapt to different environments seamlessly.
-By following a few simple steps, developers can create and activate profiles to control an application’s behavior in various contexts.
-in application.properties add the following line of code in it-
-spring.profiles.active=dev
+-- Field enjection
+
+--Spring profiling
+	Spring Boot Profiles are a powerful tool for managing environment-specific configurations.
+	They promote flexibility and maintainability by allowing an application to adapt to different environments seamlessly.
+	By following a few simple steps, developers can create and activate profiles to control an application’s behavior in various contexts.
+	in application.properties add the following line of code in it-
+	spring.profiles.active=dev
 
 -RestTemplate
 https://www.geeksforgeeks.org/spring-boot-rest-template/
@@ -135,11 +141,11 @@ private RestTemplate restTemplate;
 
 RestTemplate in Spring Boot offers simplified HTTP request handling, seamless Spring integration, inter-service communication, customization, error handling, and ease of use. It also supports authentication, making it versatile for various API interactions.
 
-Methods
-GET getForObject(), getForEntity(), exchange()
-POST postForObject(), exchange()
-PUT put(), exchange()
-DELETE delete(), exchange()
+	Methods
+	GET getForObject(), getForEntity(), exchange()
+	POST postForObject(), exchange()
+	PUT put(), exchange()
+	DELETE delete(), exchange()
 
 @GetMapping("/getForObject/allEmployees")
 public ResponseEntity<?> getCustomersUsingGetForObject()
@@ -157,25 +163,25 @@ public ResponseEntity<?> getCustomersUsingGetForObject()
 }
 
 --Advantages of Microservices
-Microservices are self-contained, independent deployment module.
-The cost of scaling is comparatively less than the monolithic architecture.
-Microservices are independently manageable services. It can enable more and more services as the need arises. It minimizes the impact on existing service.
-
-It is possible to change or upgrade each service individually rather than upgrading in the entire application.
-Microservices allows us to develop an application which is organic (an application which latterly upgrades by adding more functions or modules) in nature.
-It enables event streaming technology to enable easy integration in comparison to heavyweight interposes communication.
-Microservices follows the single responsibility principle.
-The demanding service can be deployed on multiple servers to enhance performance.
-Less dependency and easy to test.
-Dynamic scaling.
-Faster release cycle.
+	Microservices are self-contained, independent deployment module.
+	The cost of scaling is comparatively less than the monolithic architecture.
+	Microservices are independently manageable services. It can enable more and more services as the need arises. It minimizes the impact on existing service.
+	
+	It is possible to change or upgrade each service individually rather than upgrading in the entire application.
+	Microservices allows us to develop an application which is organic (an application which latterly upgrades by adding more functions or modules) in nature.
+	It enables event streaming technology to enable easy integration in comparison to heavyweight interposes communication.
+	Microservices follows the single responsibility principle.
+	The demanding service can be deployed on multiple servers to enhance performance.
+	Less dependency and easy to test.
+	Dynamic scaling.
+	Faster release cycle.
 
 --Disadvantages of Microservices
-Microservices has all the associated complexities of the distributed system.
-There is a higher chance of failure during communication between different services.
-Difficult to manage a large number of services.
-The developer needs to solve the problem, such as network latency and load balancing.
-Complex testing over a distributed environment.
+	Microservices has all the associated complexities of the distributed system.
+	There is a higher chance of failure during communication between different services.
+	Difficult to manage a large number of services.
+	The developer needs to solve the problem, such as network latency and load balancing.
+	Complex testing over a distributed environment.
 
 What is Serialization in Java?
 Serialization in Java is an essential concept in programming that allows you to convert complex data structures, such as objects, into a format that can be easily stored or transmitted. It is a crucial technique in various Java applications, including network communication, database storage, and more.
@@ -184,10 +190,10 @@ Serialization in Java is an essential concept in programming that allows you to 
 -Key strategies to prevent memory leaks in Spring Boot microservices:
 -Coding best practices:
 ---Avoid unnecessary object creation: Don't create objects you don't need, especially in loops. 
-Null unused references: Set references to objects you no longer need to null to allow garbage collection. 
-Use try-with-resources: Ensure resources like streams and connections are automatically closed. 
-Proper data structures: Choose the correct data structure based on your requirements to avoid memory issues. 
-Manage object lifecycles: Be mindful of object creation and destruction in your application. 
+	Null unused references: Set references to objects you no longer need to null to allow garbage collection. 
+	Use try-with-resources: Ensure resources like streams and connections are automatically closed. 
+	Proper data structures: Choose the correct data structure based on your requirements to avoid memory issues. 
+	Manage object lifecycles: Be mindful of object creation and destruction in your application. 
 
 ---Utilize caching effectively:
 --Eviction policies: Implement eviction policies in your cache to remove old or rarely used entries. 
@@ -196,12 +202,77 @@ Manage object lifecycles: Be mindful of object creation and destruction in your 
 --JVM monitoring tools: Use tools like VisualVM, Java Mission Control (JMC), or YourKit to monitor memory usage and identify potential leaks. 
 
 --Heap dumps: Regularly take heap dumps to analyze object allocation patterns and identify objects holding onto unnecessary references. 
-Address specific memory leak scenarios:
-Static variables: Be cautious with static variables as they can hold references to objects for the entire application lifetime. 
-Unclosed connections: Ensure database connections, network streams, and other external resources are closed properly. 
-Large data structures in loops: If iterating through large datasets, avoid creating unnecessary copies in memory. 
-Spring WebClient: When using Spring WebClient, ensure you are not creating unnecessary URI builders that could lead to leaks. 
+	Address specific memory leak scenarios:
+	Static variables: Be cautious with static variables as they can hold references to objects for the entire application lifetime. 
+	Unclosed connections: Ensure database connections, network streams, and other external resources are closed properly. 
+	Large data structures in loops: If iterating through large datasets, avoid creating unnecessary copies in memory. 
+	Spring WebClient: When using Spring WebClient, ensure you are not creating unnecessary URI builders that could lead to leaks. 
 
+--  What is the difference between yml and property file
+	.properties stores data in sequential format, whereas
+	.yml stores data in hierarchical format.
+
+	.properties supports only key-value pairs (basically string values), whereas
+	.yml supports key-value pair, as well as map, list & scalar type values.
+
+	.properties is specifically used by Java, whereas
+	.yml can be used by other languages (eg Java, Python, ROR, etc).
+
+	 When managing multiple configuration profiles, then:
+	.properties requires you to create .properties file per every profile, whereas in
+	.yml you can create a section for each specific profile inside a single .yml file.
+
+	In Spring projects, @PropertySource annotation can only be used with .properties.	
+	
+--Saga Design pattern implementation for Transaction management
+
+	https://www.google.com/search?q=how+saga+design+pattern+works+in+spring&rlz=1C1GCEA_enIN1068IN1068&oq=how+saga+design+pattern+works+in+spring&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAtIBCTE3NzQyajBqNKgCALACAQ&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:630641ed,vid:WGI_ciUa3FE,st:0
+
+	How to manage distributed transaction
+	Saga Pattern
+	
+	It can be implemented in two ways:
+	1. Choriography
+	2. Orchestration
+	
+	Choriography means task executed independently. Once one task is completed, it invokes the next tasks in the sequence. 
+	in case if the next task is fails then it invokes the comensating task for the previous task.
+	
+	Orchestation means the tasks are invoked by onother parent task. it plays the role of an Orchestrator.
+	It calls each tasks in the sequence and based on thier response decides whether to call next task or the comensating task.	
+
+
+-- List core principles in spring boot
+
+	Spring Boot is a popular framework that simplifies the process of building and deploying applications in the Spring ecosystem. Here are some core principles and concepts of Spring Boot:
+	
+	Convention over Configuration: Spring Boot follows the philosophy of providing sensible defaults and configurations so that developers can focus on writing code rather than managing boilerplate configuration.
+	
+	Opinionated Defaults: It includes a set of libraries and frameworks that are commonly used in projects, making it easier to get started without having to make countless decisions on dependencies and configurations.
+	
+	Microservices Friendly: Spring Boot is designed to easily create standalone applications that adhere to the microservices architecture, allowing for development and deployment of scalable services.
+	
+	Embedded Servers: Spring Boot allows you to run applications as standalone Java applications with embedded servers (like Tomcat, Jetty, or Undertow) without needing to configure a separate web server.
+	
+	Autoconfiguration: Spring Boot automatically configures your application based on the libraries on the classpath. This simplifies the setup by automatically providing required beans and settings.
+	
+	Production-Ready Features: It comes with several built-in features such as health checks, metrics, and monitoring, which aid in running applications in production environments.
+	
+	Actuator: Spring Boot Actuator provides features to monitor and manage your application. It exposes various endpoints that give insights into the application state, health, and metrics.
+	
+	Spring Boot Starter: Starters are a set of convenient dependency descriptors that you can include in your application. They simplify the process of including commonly used libraries for specific types of applications or functionalities.
+	
+	Externalized Configuration: Spring Boot supports external configuration files (like application.properties or application.yml), allowing developers to easily manage configuration properties for different environments (development, testing, production, etc.).
+	
+	Profiles: Spring Boot enables the use of different profiles to segregate parts of your application’s configuration. This allows you to run the same application with different configurations based on the environment.
+	
+	Dependency Management: It simplifies dependency management by providing a dependency management mechanism that deals with transitive dependencies and version conflicts.
+	
+	Testing Support: Spring Boot offers extensive support for testing applications, with pre-configured testing libraries, utilities, and annotations to facilitate unit and integration testing.
+	
+	Community and Ecosystem: Spring Boot has a robust community and ecosystem that offer a variety of tools, extensions, and support, making it easier to find resources and solutions.
+	
+	These principles make Spring Boot a powerful tool for developing applications with minimal complexity and maximum efficiency.
 
 Type	Question	Answer	Keyword
 JAVA + SPRINGBOOT	Name any Stream Intermediatory Operators ?	filter, map, peek, findFirst, distinct, skip, limit, findAny, findLast, anyMatch, noneMatch, AllMatch	must know atleast 3
@@ -219,3 +290,15 @@ ANGULAR	What is the difference between @Input() and @Output() in Angular?	@Input
 ANGULAR	What is pipe in angular?	A pipe in Angular is a feature used to transform data in templates. It takes in data as input and formats it to display in a more readable or useful way.	transform(), built-in pipes, custom pipes, DatePipe, CurrencyPipe, data transformation, template
 ANGULAR	What is ngClass in Angular?	ngClass is a directive used to dynamically add or remove CSS classes on an HTML element based on a condition.	dynamic classes, conditional, CSS, ngClass
 ANGULAR	What is lazy loading in Angular?	Lazy loading is a technique that loads feature modules on demand rather than at application startup, improving performance and load times.	performance optimization, feature modules, asynchronous loading, loadChildren.
+
+
+2. How to perform request body object validation 
+3. How to handle global exception in the spring boot 
+4. How to solve circular dependency issue 
+5. How to change tomcat server and deploy other server
+Spring/spring Boot
+1.) What is the circular dependency issue and how to solve it? 
+2.) How to validate request body object in the REST API? 
+3.) What is the different between application.property file and application.yml? 
+4.) How to create the CRON job? 
+5.) What is the different between WebClient and RestTemplate? 

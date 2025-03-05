@@ -1,0 +1,29 @@
+Agile Methodology or Agile Process?  
+
+We fallows Agile Methodology, What is mean by agile process?, 
+It is a set of methods and practices where software development and project management take place to deliver customer-centric products in a short development cycle known as sprints.
+It is an iterative approach and each iteration is specially designed to be small and manageable so that it can be delivered in a specific given period of time. 
+Agile methodologies are open to changing requirements over time and encourage constant feedback from end-users. 
+It is the most popular approach because, in this process, customers are also involved so that they can get updates regarding 
+their product and also make sure whether or not they are meeting their requirements. 
+
+
+Incident management process?
+
+To manage incidents in an Agile process model, prioritize rapid response, open communication, collaborative problem-solving, 
+and continuous improvement by quickly identifying issues, involving the relevant team members, escalating when necessary, 
+and learning from each incident to refine processes and prevent future occurrences, incident analysis, and leveraging dedicated tools to streamline the process.
+ 
+If there is any fuctional testing is going on production for newly deployed features and there any descipency found by the prod QA, 
+then they will raise the incident on incident management application called helix, and it assigned to the PO or BA.
+PO or BA will reachout to me to look into that incident, which need to be fixed based on the specified priorities and severity.
+
+There are 4 categories of incidents specified i.e. P1 to P4
+P1 is highest priority P1 4 Hrs, P2 4-8 Hrs. P3- 2 working days and P4 is less priorty, it can be fixed later.
+
+Whenever we get incident and fixed that in specified time and that need to be do the hot-fix release against the production environment.
+
+For that we have to prepare RCA document depending on my finding and analysis of code and find out the Root cause and give details explaination to PO and our PO will prepare RCA document with me on call depending on my finding which I have provided to the PO. 
+
+If we have to go with hot-fix release then there is a special timeline associated. before release I have to fix that bug,prepare RCA, 
+collect test evidences

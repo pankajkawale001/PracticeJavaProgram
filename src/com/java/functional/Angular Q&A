@@ -32,8 +32,27 @@ ng serve --port 4209
 	More lightweight web application.
 	Open source.
 	
+-- What is Angular material?
+
+	Its provide the UI library
+	It provides the vast toolkit for UI
+	Benefits- fast development speed.
+	It provides reusable componants.
+
+-- What is metadata?
+
+	Metadata - To configure ts class for that metadata used
+	@Component({
+	  selector: 'app-client-project',
+	  imports: [ReactiveFormsModule,DatePipe],
+	  templateUrl: './client-project.component.html',
+	  styleUrl: './client-project.component.css'
+	})
+	
+	
 -- Where Bootstrapping Is Done In Angular Application?
-	In Angular, bootstrapping refers to the process of initializing and running an Angular application. It involves loading the root module of the application which mostly is app.module.ts and then compiling and launching the component tree.
+	In Angular, bootstrapping refers to the process of initializing and running an Angular application. 
+	It involves loading the root module of the application which mostly is app.module.ts and then compiling and launching the component tree.
 	
 -- Angular Life Cycle hooks
 	Life cycle hooks are the set of methods that are executed at specific moment during the lifecycle of component.
@@ -57,24 +76,27 @@ ng serve --port 4209
 
 
 -- What is Standalone Components?
-	Standalone component allowing developers to create reusable components with minimal boilerplate code, improving modularity and making applications easier to maintain by reducing the reliance on complex module structures;
 
-@Component({
-  selector: 'corp-button',
-  standalone: true,
-  imports: [CommonModule],
-  template: `
-    <button class="corp-button">
-      <ng-content></ng-content>
-    </button>
-  `,
-  styleUrls: ['./button.component.css']
-})
-export class ButtonComponent {
+	Standalone component allowing developers to create reusable components with minimal boilerplate code, 
+	improving modularity and making applications easier to maintain by reducing the reliance on complex module structures;
 
-}
+	@Component({
+	  selector: 'corp-button',
+	  standalone: true,
+	  imports: [CommonModule],
+	  template: `
+	    <button class="corp-button">
+	      <ng-content></ng-content>
+	    </button>
+	  `,
+	  styleUrls: ['./button.component.css']
+	})
+	export class ButtonComponent {
+	
+	}
 
 -- What is routing in angular?
+
 	Routing is URL pattern matching.
 	Rout is used to handle the navigation from one view to the next.
 	Routs-  this the class is used to map the component and path.
@@ -82,9 +104,10 @@ export class ButtonComponent {
 	routerLink- this is the directive to navigate diffrent route
 
 -- What is Routing Guards?
-	Guards are interfaces already available natively in angular the let the control access to routes based on conditions we provide in the class of the interface.
+	Guards are interfaces already available natively in angular the let the control access to routes 
+	based on conditions we provide in the class of the interface.
 	
-- What is Eager loading
+-- What is Eager loading
 	Loading modules befor application starts.
 	its good for small application but it will affect the performance web application
 
@@ -92,10 +115,14 @@ export class ButtonComponent {
 	Angular provides a powerful feature called "Lazy Loading" which allows developers to load modules and components on-demand. 
 	Lazy loading is technique that allow user to defer loading of certain parts of an angular application. 
 	Parts mean certain modules in the application. 
-	These modules are loaded dynamically when a user navigate to a route associated with that module, It will reduce the initial load time as well.
+	These modules are loaded dynamically when a user navigate to a route associated with that module, 
+	It will reduce the initial load time as well.
 
 -- How to implement Lazy loading
-	We can update our app.router.ts file to add the actual routes. Also don't forget to add router-outlet tag in the app.component.html and import RouterOutlet to app.component.ts. Finally, we can add the buttons to handle navigation between different routes, for this to work we will need to import the RouterLink.
+	We can update our app.router.ts file to add the actual routes. Also don't forget to add router-outlet tag in the app.component.html 
+	and import RouterOutlet to app.component.ts. Finally, we can add the buttons to handle navigation between different routes, 
+	for this to work we will need to import the RouterLink.
+	
 	<!-- app.component.html -->
 	<button routerLink="home">Home</button>
 	<button routerLink="services">Services</button>
@@ -126,7 +153,7 @@ export class ButtonComponent {
 	Template is the form of HTML pluse additional feature
 	Template tells the angular how to render componant
 
---diff between Component, Modules, Services
+-- Diff between Component, Modules, Services
 	Component - most building block of angular application - @component
 	Modules- Multiple component is combined is called modules. e.g. Modules, directives, pipes, services, @ngModel
 	
@@ -144,7 +171,8 @@ export class ButtonComponent {
 	3. Two way data binding using ngModel - [(ngModel)]="firstName"
 	4. Event Binding- (click)="showWelcomeAlert()
 
---What is Two way data binding in angular
+-- What is Two way Data Binding in angular
+
 	Sharing data between componant class and Template
 	If class data change it will reflect tamplate and vice versa
 	its a combination of event and property binding
@@ -165,6 +193,7 @@ export class ButtonComponent {
 
 
 -- What is Pipes in angular
+
 	Pipe is simple function expression
 	Pipes take one input and transform to the output 
 	1. Built-in Pipes
@@ -190,43 +219,34 @@ export class ButtonComponent {
 		}
 
 -- What is Decorator in angular
+
 	With decorator we can configure ts class
 	Using decorator we can pass the metadata to the class
 	e.g. @Component decorator
 	Metadata - > @Component({Selector, templateUrl,styleUrl})
 
 
---What are the ways of communication in angular?
+-- What are the ways of communication in angular?
+
 	In Angular, the primary ways to facilitate communication between components are through data binding using the 
 	
 	@Input decorator is used to pass data from a parent component to a child component. 
 	The child component can access the input property to get the data passed from the parent component.
 	
-	@Output decorator is used to emit events from a child component to a parent component. The parent component can subscribe to these events and execute a function when the event is emitted.
+	@Output decorator is used to emit events from a child component to a parent component. 
+	The parent component can subscribe to these events and execute a function when the event is emitted.
 	
-	@ViewChild: The @ViewChild It provides a way to interact with elements within your components view. decorator is used to access a child component's properties and methods from a parent component. This method of communication is helpful when you need to call a child component's methods or access its properties directly.
+	@ViewChild: The @ViewChild It provides a way to interact with elements within your components view. 
+	decorator is used to access a child component's properties and methods from a parent component. 
+	This method of communication is helpful when you need to call a child component's methods or access its properties directly.
 
 -- How to improve performance in angular
+
 	To improve performance in Angular, key strategies include: using lazy loading to load modules only when needed, 
 	implementing the "OnPush" change detection strategy to minimize unnecessary checks, 
 	utilizing Angular Universal for server-side rendering, 
 	optimizing image sizes, minimizing HTTP requests, and 
 	ensuring proper unsubscribing from observables to prevent memory leaks. 
-
--- What is Angular material?
-	Its provide the UI library
-	It provides the vast toolkit for UI
-	Benefits- fast development speed.
-	It provides reusable componants.
-
--- What is metadata?
-	Metadata - To configure ts class for that metadata used
-	@Component({
-	  selector: 'app-client-project',
-	  imports: [ReactiveFormsModule,DatePipe],
-	  templateUrl: './client-project.component.html',
-	  styleUrl: './client-project.component.css'
-	})
 
 -- What is FORMS?
 	Angular form are used to handle the user inputs such as validation, value assigning, and getting.
@@ -247,10 +267,14 @@ export class ButtonComponent {
 	Number, String, boolean, Array, Tuple, enum
 	
 -- What Are The Advantages Of Using Typescript Over Javascript?
-	The primary advantage of using TypeScript over JavaScript is its static typing system, which allows for better code readability, maintainability, and fewer runtime errors by enabling type checking during development, especially in large and complex projects where multiple developers collaborate; this leads to improved developer productivity and fewer bugs compared to JavaScript's dynamic typing. 
+	The primary advantage of using TypeScript over JavaScript is its static typing system, which allows for better code readability,
+	maintainability, and fewer runtime errors by enabling type checking during development, 
+	especially in large and complex projects where multiple developers collaborate; 
+	this leads to improved developer productivity and fewer bugs compared to JavaScript's dynamic typing. 
 
 -- What Is Template Reference Variable?
-	In the template, you use the hash symbol, #, to declare a template variable. The following template variable, #phone, declares a phone variable with the <input> element as its value.
+	In the template, you use the hash symbol, #, to declare a template variable. 
+	The following template variable, #phone, declares a phone variable with the <input> element as its value.
 
 	src/app/app.component.html
 	content_copy
@@ -261,13 +285,16 @@ export class ButtonComponent {
 	The ng-content is used when we want to insert the content dynamically inside the component that helps to increase component reusability.
 
 -- What Is Ng-Template ?
-	he <ng-template> is an Angular element for rendering HTML. It is never displayed directly. Use for structural directives such as: ngIf, ngFor, ngSwitch,.. Those directives can add and remove copies of the template content based on their own logic.
+	he <ng-template> is an Angular element for rendering HTML. It is never displayed directly. 
+	Use for structural directives such as: ngIf, ngFor, ngSwitch,.. 
+	Those directives can add and remove copies of the template content based on their own logic.
 
 -- What Is ng-container
 	Use as a grouping element when there is no suitable host element.
 	
 -- what is subject and behaviorsubject in angular
-	In Angular, Subjects and BehaviorSubjects are tools for sharing data between components of an application. They are used to manage component state and handle asynchronous operations. 
+	In Angular, Subjects and BehaviorSubjects are tools for sharing data between components of an application. 
+	They are used to manage component state and handle asynchronous operations. 
 
 -- Subjects
 	Subjects: They help share data quickly with many parts of your app at once
@@ -286,10 +313,17 @@ export class ButtonComponent {
 	BehaviorSubject can lead to memory management concerns in long-running applications
 
 -- How Custom Pipes Are Created
-	To create a custom pipe in Angular, you need to define a TypeScript class decorated with the @Pipe decorator, which specifies the pipe name, and implement the PipeTransform interface, with the core logic for transforming data residing within the transform method inside the class; essentially, you create a class that takes input data and returns a modified version of it based on your custom logic. 
+	To create a custom pipe in Angular, you need to define a TypeScript class decorated with the @Pipe decorator,
+	which specifies the pipe name, and implement the PipeTransform interface, 
+	with the core logic for transforming data residing within the transform method inside the class; 
+	essentially, you create a class that takes input data and returns a modified version of it based on your custom logic. 
 
 -- What Is Component Lifecycle?
-	In Angular, a component lifecycle refers to the series of stages a component goes through from its creation, initialization, rendering, potential updates based on data changes, and finally, its destruction when no longer needed, allowing developers to execute specific code at different points in this process using lifecycle hooks like ngOnInit, ngOnChanges, and ngOnDestroy to manage data loading, subscriptions, and cleanup operations within the component's lifespan.
+	In Angular, a component lifecycle refers to the series of stages a component goes through from its creation, 
+	initialization, rendering, potential updates based on data changes, and finally, its destruction when no longer needed, 
+	allowing developers to execute specific code at different points in this process using 
+	lifecycle hooks like ngOnInit, ngOnChanges, and ngOnDestroy to manage data loading, subscriptions, 
+	and cleanup operations within the component's lifespan.
 	
 -- What is an HTTP Interceptor?
 	These interceptors allow developers to intercept and handle HTTP requests and responses globally within an application.
@@ -366,9 +400,12 @@ export class ButtonComponent {
 	
 -- Describe a scenario where you implemented authentication and authorization in an Angular application.
 
-	Authentication and authorization are important security features for any web application, including Angular applications. Here is an example scenario where you might implement authentication and authorization in an Angular application:
+	Authentication and authorization are important security features for any web application, including Angular applications. 
+	Here is an example scenario where you might implement authentication and authorization in an Angular application:
 
-	Suppose you are working on a social media platform where users can create accounts, post content, and interact with each other. To ensure the security and privacy of user data, you need to implement a login system that authenticates users and grants access to specific features based on their roles and permissions.
+	Suppose you are working on a social media platform where users can create accounts, post content, and interact with each other. 
+	To ensure the security and privacy of user data, you need to implement a login system that authenticates users 
+	and grants access to specific features based on their roles and permissions.
 
 	To implement authentication and authorization in this scenario, you can follow these steps:
 
@@ -387,7 +424,8 @@ export class ButtonComponent {
 
 -- 5 ways to unsubscribe in Angular to avoid memory leaks:
 
-	Using the Subscription variable. This is the most common way to unsubscribe from an observable in Angular. When you subscribe to an observable, you get a Subscription object back. You can use this object to unsubscribe from the observable at any time by calling its unsubscribe() method.
+	Using the Subscription variable. This is the most common way to unsubscribe from an observable in Angular. 
+	When you subscribe to an observable, you get a Subscription object back. You can use this object to unsubscribe from the observable at any time by calling its unsubscribe() method.
 
 	const subscription = observable$.subscribe(value => {
 	  // Do something with the value.
@@ -395,31 +433,39 @@ export class ButtonComponent {
 
 	// Unsubscribe from the observable.
 	subscription.unsubscribe();
-	Using the takeUntil() operator. The takeUntil() operator allows you to unsubscribe from an observable when a certain condition is met. For example, you could use the takeUntil() operator to unsubscribe from an observable when a component is destroyed.
+	Using the takeUntil() operator. The takeUntil() operator allows you to unsubscribe from an observable when a certain condition is met. 
+	For example, you could use the takeUntil() operator to unsubscribe from an observable when a component is destroyed.
 
 	const subscription = observable$.pipe(takeUntil(componentWillDestroy$));
 
 	// Unsubscribe from the observable when the component is destroyed.
 	componentWillDestroy$.subscribe(() => subscription.unsubscribe());
-	Using the take() operator. The take() operator allows you to unsubscribe from an observable after a certain number of values have been emitted. For example, you could use the take() operator to unsubscribe from an observable after 10 values have been emitted.
+	Using the take() operator. The take() operator allows you to unsubscribe from an observable after a certain number of values have been emitted. 
+	For example, you could use the take() operator to unsubscribe from an observable after 10 values have been emitted.
 
 	const subscription = observable$.pipe(take(10));
 
 	// Unsubscribe from the observable after 10 values have been emitted.
 	subscription.unsubscribe();
-	Using the first() method. The first() method allows you to unsubscribe from an observable after the first value has been emitted. For example, you could use the first() method to unsubscribe from an observable after the first user has logged in.
+	Using the first() method. The first() method allows you to unsubscribe from an observable after the first value has been emitted. 
+	For example, you could use the first() method to unsubscribe from an observable after the first user has logged in.
 
 	const subscription = observable$.pipe(first());
 
 	// Unsubscribe from the observable after the first value has been emitted.
 	subscription.unsubscribe();
-	Using the firstValueFrom() method. The firstValueFrom() method allows you to unsubscribe from an observable after the first value has been emitted, but it also allows you to listen for additional values. For example, you could use the firstValueFrom() method to unsubscribe from an observable after the first user has logged in, but you could also listen for additional values, such as the user's name and email address.
+	Using the firstValueFrom() method. The firstValueFrom() method allows you to unsubscribe from an observable 
+	after the first value has been emitted, but it also allows you to listen for additional values. 
+	For example, you could use the firstValueFrom() method to unsubscribe from an observable after the first user has logged in, 
+	but you could also listen for additional values, such as the user's name and email address.
 
 	const subscription = observable$.pipe(firstValueFrom());
 
 	// Unsubscribe from the observable after the first value has been emitted.
 	subscription.unsubscribe();
-	It is important to unsubscribe from observables in Angular to avoid memory leaks. If you do not unsubscribe from an observable, it will continue to run in the background, even if the component that subscribed to it is no longer visible. This can lead to memory leaks and performance problems.
+	It is important to unsubscribe from observables in Angular to avoid memory leaks. 
+	If you do not unsubscribe from an observable, it will continue to run in the background, even if the component that subscribed to it is no longer visible. 
+	This can lead to memory leaks and performance problems.
 	
 	
 -- Difference between “ == “ and “ === “ operators.
@@ -464,9 +510,12 @@ export class ButtonComponent {
 		)
 	  )
 	  .subscribe(v => console.log('switchmap:', v));
-	If you open the network-tab of your browser you will see that the requests are executed in sequence, meaning that each request has to finish before the next one starts. So getUserId() has to finish before getUserPermission() starts, which in turn has to finish before getUserInfo() can run... and so on.
+	If you open the network-tab of your browser you will see that the requests are executed in sequence, 
+	meaning that each request has to finish before the next one starts. So getUserId() has to finish before getUserPermission() starts, 
+	which in turn has to finish before getUserInfo() can run... and so on.
 
-	You can also use mergeMap instead. The only difference is, that switchMap can cancel an ongoing http-request when a new value is emitted by the source observable. Look here for a good comparison.
+	You can also use mergeMap instead. The only difference is, that switchMap can cancel an ongoing http-request when a new value 
+	is emitted by the source observable. Look here for a good comparison.
 
 -- forkJoin
 	This approach allows you to execute requests in parallel.
@@ -487,8 +536,10 @@ export class ButtonComponent {
 	  }))
 	  .subscribe(v => console.log('forkJoin:', v));
 	  
-	Since forkJoin runs all the Observable sequences it has been given in parallel, it is the better option if the requests (or at least some of them) don't depend on each other.
-	In this example, the getUserId()-request will run first, and once it has finished both getUserPermission() and getUserInfo() will start running in parallel.
+	Since forkJoin runs all the Observable sequences it has been given in parallel, 
+	it is the better option if the requests (or at least some of them) don't depend on each other.
+	In this example, the getUserId()-request will run first, 
+	and once it has finished both getUserPermission() and getUserInfo() will start running in parallel.
 	
 -- JIT - Compile TypeScript just in time for executing it.
 

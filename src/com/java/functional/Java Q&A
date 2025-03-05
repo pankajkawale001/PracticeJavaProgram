@@ -8,6 +8,18 @@ public sealed class Parent permits Child1, Child2 {
 }
 
 
+-- Java 8 Features:
+
+	Lambda Expressions: Simplifies Code By Enabling Function Passing As Arguments.
+	
+	Streams Api: Provides A Powerful Way To Process Sequences Of Data In A Functional Style.
+	
+	Default Methods: Allows Interfaces To Have Method Implementations, Reducing The Need For Concrete Classes.
+	
+	Optional Class: Helps In Handling Null Values More Safely, Avoiding Nullpointerexception.
+	
+	New Date And Time Api: Offers A More Flexible And Reliable Way To Handle Date And Time (Java.Time).
+
 -- Intermediate Operations :
 	They return stream. 
 	Intermediate operations are lazily loaded.
@@ -22,18 +34,35 @@ public sealed class Parent permits Child1, Child2 {
 	
 	forEach(), toArray(), reduce(), collect(), min(), max(), count(), anyMatch(), allMatch(), noneMatch(), findFirst(), findAny()
 
+-- what is the diff between map and flataMap method
+   The main difference between the map and flatMap methods is that map transforms each element in a stream into a single element in a new stream, 
+   while flatMap transforms each element into a stream of multiple elements
+
+
 -- `map` transforms each element in a stream into another form individually, 
 	Use `map` for one-to-one transformations 
  
 -- `flatMap` transforms each element into a stream and flattens the result. 
 	and `flatMap` for one-to-many transformations, such as flattening nested collections
 
---Streams are lazy because intermediate operations are not evaluated unless terminal operation is invoked.
+-- Streams are lazy because intermediate operations are not evaluated unless terminal operation is invoked.
 	Each intermediate operation creates a new stream, stores the provided operation/function and return the new stream.
 	The pipeline accumulates these newly created streams.
 	The time when terminal operation is called, traversal of streams begins and the associated function is performed one by one.
 	Parallel streams don't evaluate streams 'one by one' (at terminal point). The operations are rather performed simultaneously, depending on the available cores.
 
+-- What is functional interface and why it contains only single abstract method
+	A functional interface in Java contains only one abstract method (SAM) so that it can be used with lambda expressions and method references
+	allow for the implementation of functional programming concepts in Java
+	Promote code reusability
+	Facilitate the creation of more concise and expressive code
+
+-- What is marker interface?
+	A marker interface in Java is an interface that doesn't contain any methods or constants, and is used to provide information about an object's type at runtime. It's also known as a tagging interface. 
+	Serializable: Indicates that objects of a class can be serialized, meaning they can be converted into a byte stream for storage or transmission 
+	Cloneable: Allows instances of a class to be cloned 
+	Remote: An example of a marker interface 
+	
 -- What is a Collision?
 
 	Collisions in HashMaps are a normal occurrence due to the nature of hashing.
@@ -63,7 +92,19 @@ public sealed class Parent permits Child1, Child2 {
 	It also only includes distinct components, guaranteeing that every key corresponds to a single value. 
 	TreeMap can have more than one null value, even if it cannot have a null key.
 
+-- How Do You Retrieve A Value From A Hashmap?
+   By using the keySet() function on a HashMap, you can get a set that contains all of the keys that are kept in the map. Once you have access to each key, 
+   you may use a loop to iterate through this Set . Apply the get() method to every key in order to obtain and handle the values that correspond to these keys
 
+-- How Do You Check If A Key Exists In A Hashmap?
+   Java's HashMap uses the containsKey(Object key) method to check if a given key is present in the map. 
+   This method checks if the HashMap has a mapping for the supplied key when it is called. 
+   The function returns true if the key is present in the HashMap and returns false otherwise
+
+-- What Happens If You Put A Null Key Or Value In A Hashmap?
+	The HashMap, however, allows any of its values to be null , as well as one of its keys. 
+	Keys still have to be unique, so this is why only one can be null . Below is a table that summarizes all the key differences as outlined above
+	
 --IdentityHashMap?
 	IdentityHashMap uses reference equality (==) instead of the equals() method to compare keys.
 	This means that two objects are considered equal only if they reference the same memory location.
@@ -100,13 +141,16 @@ public sealed class Parent permits Child1, Child2 {
 	It is an enhancement of HashMap as we know that while dealing with Threads 
 	in our application HashMap is not a good choice because performance-wise HashMap is not up to the mark.
 	ConcurrentHashMap is a thread-safe implementation of the Map interface in Java, which means multiple threads can access it simultaneously without any synchronization issues.
-	One of the key features of the ConcurrentHashMap is that it provides fine-grained locking, meaning that it locks only the portion of the map being modified, rather than the entire map.
+	One of the key features of the ConcurrentHashMap is that it provides fine-grained locking, 
+	meaning that it locks only the portion of the map being modified, rather than the entire map.
 
 	ConcurrentHashMap class is synchronized and thread-safe i.e. multiple threads can operate on a single object without any complications.
 	At a time any number of threads are applicable for a read operation without locking the ConcurrentHashMap object which is not there in HashMap.
 	In ConcurrentHashMap, the Object is divided into a number of segments according to the concurrency level.
 	The default concurrency-level of ConcurrentHashMap is 16.
-	In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updated in the object, the thread must lock the particular segment in which the thread wants to operate. This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads.
+	In ConcurrentHashMap, at a time any number of threads can perform retrieval operation but for updated in the object, 
+	the thread must lock the particular segment in which the thread wants to operate. 
+	This type of locking mechanism is known as Segment locking or bucket locking. Hence at a time, 16 update operations can be performed by threads.
 	Inserting null objects is not possible in ConcurrentHashMap as a key or value.
 
 --In Java, fail-fast and fail-safe are approaches to handling errors in a system. 
@@ -134,19 +178,41 @@ public sealed class Parent permits Child1, Child2 {
 	A Java constructor cannot be abstract, static, final, and synchronized
 
 -- Java throw Keyword
-   The "throw" keyword in Java is used to explicitly throw an exception. It disrupts the normal flow of the program by transferring control to the nearest catch block that can handle the thrown exception. When an exception occurs within a method, the method creates an exception object and throws it using the "throw" keyword.
+   The "throw" keyword in Java is used to explicitly throw an exception. 
+   It disrupts the normal flow of the program by transferring control to the nearest catch block that can handle the thrown exception. 
+   When an exception occurs within a method, the method creates an exception object and throws it using the "throw" keyword.
 
 -- Java throws Keyword
-   On the other hand, the "throws" clause is used in method signatures to indicate that the method may throw certain types of exceptions during its execution. It doesn't actually throw the exception; instead, it declares that the method may throw exceptions of specified types, thereby alerting the caller to handle them appropriately.
+   On the other hand, the "throws" clause is used in method signatures to indicate that the method may throw certain types 
+   of exceptions during its execution. It doesn't actually throw the exception; 
+   instead, it declares that the method may throw exceptions of specified types, thereby alerting the caller to handle them appropriately.
 
 -If hashcode of two objects are same in java
 	It is possible for two different objects to have the same hashcode. This is known as a hash collision.
-	When two unequal objects have the same hash value, this causes a collision in the hash table, because both objects want to be in the same slot (sometimes called a bucket). The hash algorithm must resolve such collisions.
-	1. Look for the next empty slot in the hash table and put the object there. Pros: easy to implement, cons: can lead to clustering of objects and degrade performance, capacity may be exceeded
+	When two unequal objects have the same hash value, this causes a collision in the hash table, 
+	because both objects want to be in the same slot (sometimes called a bucket). The hash algorithm must resolve such collisions.
+	1. Look for the next empty slot in the hash table and put the object there. 
+	Pros: easy to implement, cons: can lead to clustering of objects and degrade performance, capacity may be exceeded
+	
+-- How to create Immutable class in Java?
+	Immutable class in java means that once an object is created, we cannot change its content. 
+	In Java, all the wrapper classes (like Integer, Boolean, Byte, Short) and String class is immutable
+	The class must be declared as final so that child classes can’t be created.
+	Data members in the class must be declared private so that direct access is not allowed.
+	Data members in the class must be declared as final so that we can’t change the value of it after object creation.
+
+-- why it is use of primitive data type in java
+   Java includes primitive types primarily for performance and memory efficiency. 
+   Primitives are much faster and use less memory than objects because they store their values directly in memory and don't require the overhead associated with objects, 
+   such as metadata for class type and garbage collection.
+
 
 -- New and old Garbage collection?
 	How do the three generations interact with / relate to each other?
-	All objects, except for large ones, are first allocated to the young generation. If an object remains alive after x number of garbage collection cycles, it gets promoted to the old/tenured generation. Hence, we can say that the young generation contains short lived objects, while the old generation contains objects that will have a long life. The permanent generation does not interact with the other two generations. 
+	All objects, except for large ones, are first allocated to the young generation. 
+	If an object remains alive after x number of garbage collection cycles, it gets promoted to the old/tenured generation. 
+	Hence, we can say that the young generation contains short lived objects, while the old generation contains objects that will have a long life. 
+	The permanent generation does not interact with the other two generations. 
 
 -- finalize() method in Java is used to perform cleanup tasks on an object before it's garbage collected: 
 	Close resources: Close external resources like files or network connections
@@ -154,13 +220,17 @@ public sealed class Parent permits Child1, Child2 {
 	Implement custom cleanup logic: Define custom cleanup logic
 	Profile and debug: Check when the garbage collector reclaims objects.
 
-	* However, as of Java 9, finalize() has been deprecated in favor of more modern resource management techniques like try-with-resources. Some say that the code you put in finalize() is often buggy or useless, and that the garbage collector is smart enough to do the job itself.
+	* However, as of Java 9, finalize() has been deprecated in favor of more modern resource management techniques 
+	like try-with-resources. Some say that the code you put in finalize() is often buggy or useless, and that the garbage collector is smart enough to do the job itself.
 
 -- OutOfMemoryError What Is a Memory Leak
-	A Memory Leak is a situation where there are objects present in the heap that are no longer used, but the garbage collector is unable to remove them from memory, and therefore, they’re unnecessarily maintained.
-	A memory leak is bad because it blocks memory resources and degrades system performance over time. If not dealt with, the application will eventually exhaust its resources, finally terminating with a fatal java.lang.OutOfMemoryError.
+	A Memory Leak is a situation where there are objects present in the heap that are no longer used, 
+	but the garbage collector is unable to remove them from memory, and therefore, they’re unnecessarily maintained.
+	A memory leak is bad because it blocks memory resources and degrades system performance over time. 
+	If not dealt with, the application will eventually exhaust its resources, finally terminating with a fatal java.lang.OutOfMemoryError.
 
-	There are two different types of objects that reside in Heap memory, referenced and unreferenced. Referenced objects are those that still have active references within the application, whereas unreferenced objects don’t have any active references.
+	There are two different types of objects that reside in Heap memory, referenced and unreferenced. 
+	Referenced objects are those that still have active references within the application, whereas unreferenced objects don’t have any active references.
 
 	The garbage collector removes unreferenced objects periodically, but it never collects the objects that are still being referenced. This is where memory leaks can occur:
 
@@ -209,230 +279,81 @@ from employees as e
 left outer join public.employees as e1 on e.id = e1."managerId"
 where e1.id IS NULL
 
---------------------------------------------------
-SOLID Principal
 
-1. Single resposiblity principal -- one class should use for single task
-This principle states that “A class should have only one reason to change” which means every class should have a single responsibility or single job or single purpose. In other words, a class should have only one job or purpose within the software system.
-
-Imagine a baker who is responsible for baking bread. The baker’s role is to focus on the task of baking bread, ensuring that the bread is of high quality, properly baked, and meets the bakery’s standards.
-
-However, if the baker is also responsible for managing the inventory, ordering supplies, serving customers, and cleaning the bakery, this would violate the SRP.
-
-2. Open/closed pricipal -- This principle states that “Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification” which means you should be able to extend a class behavior, without modifying it.
-
-Let’s understand Open/Closed Principle using an example:
-
-Imagine you have a class called PaymentProcessor that processes payments for an online store. Initially, the PaymentProcessor class only supports processing payments using credit cards. However, you want to extend its functionality to also support processing payments using PayPal.
-
-Instead of modifying the existing PaymentProcessor class to add PayPal support, you can create a new class called PayPalPaymentProcessor that extends the PaymentProcessor class. This way, the PaymentProcessor class remains closed for modification but open for extension, adhering to the Open-Closed Principle
-
-
-3. Liskov substitution principal -- according to this principle “Derived or child classes must be substitutable for their base or parent classes“. This principle ensures that any class that is the child of a parent class should be usable in place of its parent without any unexpected behavior.
-
-LSP is nearly related to inheritance, as it focuses on the behavior of derived classes when they inherit from a base class. It ensures that the derived class can extend or specialize the behavior of the base class without breaking any contracts.
-
-One of the classic examples of this principle is a rectangle having four sides. A rectangle’s height can be any value and width can be any value. A square is a rectangle with equal width and height. So we can say that we can extend the properties of the rectangle class into square class.
-
-In order to do that you need to swap the child (square) class with parent (rectangle) class to fit the definition of a square having four equal sides but a derived class does not affect the behavior of the parent class so if you will do that it will violate the Liskov Substitution Principle.
-
-4. Interface segrigation principal -- It states that “do not force any client to implement an interface which is irrelevant to them.
-suppose if you enter a restaurant and you are pure vegetarian. The waiter in that restaurant gave you the menu card which includes vegetarian items, non-vegetarian items, drinks, and sweets.
-
-In this case, as a customer, you should have a menu card which includes only vegetarian items, not everything which you don’t eat in your food. Here the menu should be different for different types of customers.
-
-5. Dependency inversion pricipal -- The Dependency Inversion Principle (DIP) is a principle in object-oriented design that states that “High-level modules should not depend on low-level modules. Both should depend on abstractions“. Additionally, abstractions should not depend on details. Details should depend on abstractions.
-
-In a software development team, developers depend on an abstract version control system (e.g., Git) to manage and track changes to the codebase. They don’t depend on specific details of how Git works internally.
------------------------------------------------------------------------------------------------
-
-Design patterns in Java
-
-Design patterns in Java are communicating objects and classes that are customized to solve a general design problem in a particular context. Software design patterns are general, reusable solutions to common problems that arise during the design and development of software. They represent best practices for solving certain types of problems and provide a way for developers to communicate about effective design solutions.
-
-Types of Design patterns in Java
-
-1. Creational Design Patterns in Java
-2. Structural Design Patterns in Java
-3. Beheavioral Disign pattern
-
-1.1 Factory Method
-Factory Method is a creational design pattern, that provide an interface for creating objects in superclass, but subclasses are responsible to create the instance of the class.
-
-1.2 Abstract Factory Method
-Abstract Factory Method is a creational design pattern, it provides an interface for creating families of related or dependent objects without specifying their concrete classes.
-
-1.3 Builder Method
-Builder Method is a creational design pattern, it provides an interface for constructing an object and then have concrete builder classes that implement this interface to create specific objects in a stepwise manner.
-
-1.4 Prototype Method
-Prototype Method is a creational design pattern, it provide to create new objects with the same structure and initial state as an existing object without explicitly specifying their class or construction details.
-
-1.5 Singleton Method
-Singleton Method is a creational design pattern, it provide a class has only one instance, and that instance provides a global point of access to it.
-Singleton classes are used for logging, driver objects, caching, and thread pool, database connections.
-
-2. Structural Design Patterns in Java
-Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.
-
-The structural design patterns simplifies the structure by identifying the relationships.
-These patterns focus on, how the classes inherit from each other and how they are composed from other classes.
-
-Adapter Pattern
-Adapting an interface into another according to client expectation.
-
-Bridge Pattern
-Separating abstraction (interface) from implementation.
-
-Composite Pattern
-Allowing clients to operate on hierarchy of objects.
-
-Decorator Pattern
-Adding functionality to an object dynamically.
-
-Facade Pattern
-Providing an interface to a set of interfaces.
-
-Flyweight Pattern
-Reusing an object by sharing it.
-
-proxy Pattern
-Representing another object.
-
-3.Behavioral Design Patterns
-Behavioral design patterns are concerned with the interaction and responsibility of objects.
-
-In these design patterns, the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.
-
-That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.
-
-----------------------------
-
-Angular
-
-What Is The Purpose Of @Input() And @Output()?
-What Is Data Binding In Angular?
-What Are Directives In Angular?
-What Is Dependency Injection (Di)?
-What Is Lazy Loading In Angular?
-How Do You Handle Http Requests In Angular?
-How Do You Implement Authentication?
-
-What Are Typescript’s Basic Types?
-
-What Are The Advantages Of Using Typescript Over Javascript?
-
-What Is The Difference Between == And === In Typescript/Javascript
-
-Promises In Javascript:
-
-Async & Await :
-
-Ques: What Is Component Lifecycle?
-
-Ques: How Many Ways Component Communication Is Done ?
-
-Ques: What Is Template Reference Variable?
-
-Ques: What Is Ng-Content ?
-
-Ques: What Is Ng-Template ?
-
-Ques: Where Bootstrapping Is Done In Angular Application?
-
-Ques: What Is Observables?
-
-Ques: What Is Subject?
-
-Ques: What Are Decorators In Angular.
-
-Ques: What Are Pipes.
-
-Ques: How Custom Pipes Are Created.
-
-Ques: What Is The Best Way To Send Access_token From Angular To Api Endpoint ?.
-
-
-
-Java
-
---How Do You Retrieve A Value From A Hashmap?
-By using the keySet() function on a HashMap, you can get a set that contains all of the keys that are kept in the map. Once you have access to each key, you may use a loop to iterate through this Set . Apply the get() method to every key in order to obtain and handle the values that correspond to these keys
-
---How Do You Check If A Key Exists In A Hashmap?
-Java's HashMap uses the containsKey(Object key) method to check if a given key is present in the map. This method checks if the HashMap has a mapping for the supplied key when it is called. The function returns true if the key is present in the HashMap and returns false otherwise
-
---What Happens If You Put A Null Key Or Value In A Hashmap?
-The HashMap, however, allows any of its values to be null , as well as one of its keys. Keys still have to be unique, so this is why only one can be null . Below is a table that summarizes all the key differences as outlined above
-The HashMap, however, allows any of its values to be null , as well as one of its keys. Keys still have to be unique, so this is why only one can be null . Below is a table that summarizes all the key differences as outlined above
-
-What Is Method Overriding In Java?
-Java 8 Features:
-Lambda Expressions: Simplifies Code By Enabling Function Passing As Arguments.
-
-
-Streams Api: Provides A Powerful Way To Process Sequences Of Data In A Functional Style.
-Default Methods: Allows Interfaces To Have Method Implementations, Reducing The Need For Concrete Classes.
-Optional Class: Helps In Handling Null Values More Safely, Avoiding Nullpointerexception.
-New Date And Time Api: Offers A More Flexible And Reliable Way To Handle Date And Time (Java.Time).
-Overloading Vs. Overriding In Java:
-What Are Solid Principles ?
+-- What Is Method Overriding In Java?
 
 -- What Does The Wait() Method Do In Java, And How Is It Used In Thread Synchronization?
-In java, synchronized methods and blocks allow only one thread to acquire the lock on a resource at a time. So, when wait() method is called by a thread, then it gives up the lock on that resource and goes to sleep until some other thread enters the same monitor and invokes the notify() or notifyAll() method
+   In java, synchronized methods and blocks allow only one thread to acquire the lock on a resource at a time. 
+   So, when wait() method is called by a thread, then it gives up the lock on that resource 
+   and goes to sleep until some other thread enters the same monitor and invokes the notify() or notifyAll() method
 
 -- What Is The Purpose Of The Join() Method In Java Threading?
-The join() method will keep waiting if the referenced thread is blocked or takes too long to process. This can become an issue as the calling thread will become non-responsive. To handle these situations, we use overloaded versions of the join() method that allow us to specify a timeout period.
+   The join() method will keep waiting if the referenced thread is blocked or takes too long to process. 
+   This can become an issue as the calling thread will become non-responsive. 
+   To handle these situations, we use overloaded versions of the join() method that allow us to specify a timeout period.
 
 -- How Do Microservices Communicate With Each Other?
-Synchronous communication
-API calls: Microservices can call APIs exposed by other services using protocols like HTTP or gRPC.
-RESTful APIs: A common way for microservices to communicate using HTTP/S protocols.
-GraphQL: A widespread method for synchronous communication that uses similar protocols as REST.
-Asynchronous communication
-Messaging systems: Microservices can send and receive messages through a queue.
-Event-driven architecture: Microservices generate and consume events in the form of messages.
-Publish/Subscribe messaging: A microservice broadcasts a message to a topic that other microservices can subscribe to.
-Other communication methods
-API Gateway: Centralizes security, scalability, and monitoring logic.
-Orchestration: A central component manages and coordinates interactions between microservices.
-Event-bus or message broker system: Publishes events between multiple microservices.
+	Synchronous communication
+	API calls: Microservices can call APIs exposed by other services using protocols like HTTP or gRPC.
+	RESTful APIs: A common way for microservices to communicate using HTTP/S protocols.
+	GraphQL: A widespread method for synchronous communication that uses similar protocols as REST.
+	Asynchronous communication
+	Messaging systems: Microservices can send and receive messages through a queue.
+	Event-driven architecture: Microservices generate and consume events in the form of messages.
+	Publish/Subscribe messaging: A microservice broadcasts a message to a topic that other microservices can subscribe to.
+	Other communication methods
+	API Gateway: Centralizes security, scalability, and monitoring logic.
+	Orchestration: A central component manages and coordinates interactions between microservices.
+	Event-bus or message broker system: Publishes events between multiple microservices.
 
 -- What Is The Role Of An Api Gateway In Microservices?
-In a microservices architecture, an API Gateway acts as a single entry point for client requests, routing them to the appropriate backend microservices, aggregating data from multiple services if necessary, and returning a unified response to the client, essentially hiding the complexity of the underlying microservices by providing a simplified interface for interaction and managing tasks like authentication, rate limiting, and protocol translation.
+   In a microservices architecture, an API Gateway acts as a single entry point for client requests, routing them to the appropriate backend microservices, 
+   aggregating data from multiple services if necessary, and returning a unified response to the client, 
+   essentially hiding the complexity of the underlying microservices by providing a simplified interface for interaction and managing tasks like authentication, 
+   rate limiting, and protocol translation.
 
 -- What Is Service Discovery In Microservices?
 
 -- What Are Some Java Frameworks Commonly Used For Microservices?
-How Is Scalability Achieved In Microservices?
-Scalability in microservices is primarily achieved through horizontal scaling, where individual microservices can be independently scaled by adding more instances to handle increased load, allowing for flexible resource allocation and high availability by distributing traffic across multiple service replicas, often facilitated by load balancers and container orchestration platforms like Kubernetes; this approach enables efficient scaling of specific services based on their individual demand rather than scaling the entire application as a single unit.
 
-What Is The Role Of Docker In Microservices?
+-- How Is Scalability Achieved In Microservices?
+   Scalability in microservices is primarily achieved through horizontal scaling, where individual microservices can be independently
+   scaled by adding more instances to handle increased load, allowing for flexible resource allocation and high availability by distributing traffic across multiple service replicas, 
+   often facilitated by load balancers and container orchestration platforms like Kubernetes; 
+   this approach enables efficient scaling of specific services based on their individual demand rather than scaling the entire application as a single unit.
+
+-- What Is The Role Of Docker In Microservices?
 
 -- How Are Microservices Monitored?
 
-Performance metrics: Monitoring tools collect and monitor performance metrics from various components, such as CPU usage, memory utilization, network traffic, and response times of individual microservices. This helps track the overall health and system performance.
-Resource utilization: Monitoring tools keep an eye on resource consumption by microservices and infrastructure components. This includes monitoring CPU, memory, disk usage, and network bandwidth to ensure efficient resource allocation.
-Error rates and failure analysis: The tools track error rates, status codes, and error messages from microservices. This allows for quick detection of anomalies and potential issues, helping developers pinpoint failures and troubleshoot them promptly.
-Latency and throughput: Monitoring tools measure the time it takes for a microservice request to be processed by microservices and the rate at which those requests are handled.
-Alerts and thresholds: If any metric exceeds a specified threshold, the system triggers alerts, so IT teams can take immediate action.
-Logs and traces: Some monitoring tools integrate with logging systems to capture and analyze logs from multiple services. Tracing capabilities allow developers to follow the flow of a request across various microservices.
-API monitoring: These tools can monitor the interactions between different microservices and APIs, ensuring that API calls are successful (and letting you know when they are not) and identifying potential bottlenecks in API communication.
-Container monitoring: Monitoring tools can capture the unique environmental issues in container health, such as resource utilization and performance.
-Service mesh observability: For microservices architectures using service mesh, the monitoring tools can provide insights into the communication and interactions between microservices within the mesh.
-Application performance monitoring (APM): APM tools give attention to the code-level performance of individual microservices, to make it easier for developers to identify performance bottlenecks.
-Custom metrics: Advanced monitoring tools recognize that all those categories sometimes are not enough. They let you define and collect custom metrics specific to your microservices architecture.
+	Performance metrics: Monitoring tools collect and monitor performance metrics from various components, such as CPU usage, memory utilization, network traffic, and response times of individual microservices. This helps track the overall health and system performance.
+	Resource utilization: Monitoring tools keep an eye on resource consumption by microservices and infrastructure components. This includes monitoring CPU, memory, disk usage, and network bandwidth to ensure efficient resource allocation.
+	Error rates and failure analysis: The tools track error rates, status codes, and error messages from microservices. This allows for quick detection of anomalies and potential issues, helping developers pinpoint failures and troubleshoot them promptly.
+	Latency and throughput: Monitoring tools measure the time it takes for a microservice request to be processed by microservices and the rate at which those requests are handled.
+	Alerts and thresholds: If any metric exceeds a specified threshold, the system triggers alerts, so IT teams can take immediate action.
+	Logs and traces: Some monitoring tools integrate with logging systems to capture and analyze logs from multiple services. Tracing capabilities allow developers to follow the flow of a request across various microservices.
+	API monitoring: These tools can monitor the interactions between different microservices and APIs, ensuring that API calls are successful (and letting you know when they are not) and identifying potential bottlenecks in API communication.
+	Container monitoring: Monitoring tools can capture the unique environmental issues in container health, such as resource utilization and performance.
+	Service mesh observability: For microservices architectures using service mesh, the monitoring tools can provide insights into the communication and interactions between microservices within the mesh.
+	Application performance monitoring (APM): APM tools give attention to the code-level performance of individual microservices, to make it easier for developers to identify performance bottlenecks.
+	Custom metrics: Advanced monitoring tools recognize that all those categories sometimes are not enough. They let you define and collect custom metrics specific to your microservices architecture.
 
-Tools
-Prometheus: The open-source monitoring and alerting toolkit is specifically designed for distributed systems and thus suitable for microservices monitoring.
-Grafana: Grafana is known for its visualizations and dashboards, which help navigate data collections and put them in a form that humans understand.
-
-Datadog: Datadog offers real-time alerts, distributed tracing, and APM, with features that promise full visibility into a microservices ecosystem.
-
-Dynatrace: This monitoring tool offers automatic application discovery and observability for microservices environments.
-Architect.io: This tool is a favorite for robust testing and monitoring capabilities in larger organizations, with a comprehensive view of microservices architectures.
-
-Lumigo: Lumigo offers end-to-end visibility, real-time debugging, and cost monitoring, and it gives particular attention to serverless architectures.
-AppDynamics: With its real-time visibility, outlier detection, network performance monitoring, and Docker and Kubernetes monitoring, this may be suitable for tracking events in a large, complex architecture.
-Instana: This tool promises complete observability for an entire microservices environment.
-Uptrace: With its emphasis on visibility into performance data and integration with popular programming languages and frameworks, Uptrace helps developers identify, diagnose, and resolve performance issues in a microservices ecosystem; we wrote about our Uptrace experiences recently.
+	Tools
+	Prometheus: The open-source monitoring and alerting toolkit is specifically designed for distributed systems and thus suitable for microservices monitoring.
+	
+	Grafana: Grafana is known for its visualizations and dashboards, which help navigate data collections and put them in a form that humans understand.
+	
+	Datadog: Datadog offers real-time alerts, distributed tracing, and APM, with features that promise full visibility into a microservices ecosystem.
+	
+	Dynatrace: This monitoring tool offers automatic application discovery and observability for microservices environments.
+	
+	Architect.io: This tool is a favorite for robust testing and monitoring capabilities in larger organizations, with a comprehensive view of microservices architectures.
+	
+	Lumigo: Lumigo offers end-to-end visibility, real-time debugging, and cost monitoring, and it gives particular attention to serverless architectures.
+	
+	AppDynamics: With its real-time visibility, outlier detection, network performance monitoring, and Docker and Kubernetes monitoring, this may be suitable for tracking events in a large, complex architecture.
+	
+	Instana: This tool promises complete observability for an entire microservices environment.
+	
+	Uptrace: With its emphasis on visibility into performance data and integration with popular programming languages and frameworks, 
+	Uptrace helps developers identify, diagnose, and resolve performance issues in a microservices ecosystem.

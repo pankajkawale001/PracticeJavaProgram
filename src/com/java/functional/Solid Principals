@@ -1,0 +1,103 @@
+What Are Solid Principles ?
+
+--------------------------------------------------
+SOLID Principal
+
+1. Single resposiblity principal -- one class should use for single task
+This principle states that “A class should have only one reason to change” which means every class should have a single responsibility or single job or single purpose. In other words, a class should have only one job or purpose within the software system.
+
+Imagine a baker who is responsible for baking bread. The baker’s role is to focus on the task of baking bread, ensuring that the bread is of high quality, properly baked, and meets the bakery’s standards.
+
+However, if the baker is also responsible for managing the inventory, ordering supplies, serving customers, and cleaning the bakery, this would violate the SRP.
+
+2. Open/closed pricipal -- This principle states that “Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification” which means you should be able to extend a class behavior, without modifying it.
+
+Let’s understand Open/Closed Principle using an example:
+
+Imagine you have a class called PaymentProcessor that processes payments for an online store. Initially, the PaymentProcessor class only supports processing payments using credit cards. However, you want to extend its functionality to also support processing payments using PayPal.
+
+Instead of modifying the existing PaymentProcessor class to add PayPal support, you can create a new class called PayPalPaymentProcessor that extends the PaymentProcessor class. This way, the PaymentProcessor class remains closed for modification but open for extension, adhering to the Open-Closed Principle
+
+
+3. Liskov substitution principal -- according to this principle “Derived or child classes must be substitutable for their base or parent classes“. This principle ensures that any class that is the child of a parent class should be usable in place of its parent without any unexpected behavior.
+
+LSP is nearly related to inheritance, as it focuses on the behavior of derived classes when they inherit from a base class. It ensures that the derived class can extend or specialize the behavior of the base class without breaking any contracts.
+
+One of the classic examples of this principle is a rectangle having four sides. A rectangle’s height can be any value and width can be any value. A square is a rectangle with equal width and height. So we can say that we can extend the properties of the rectangle class into square class.
+
+In order to do that you need to swap the child (square) class with parent (rectangle) class to fit the definition of a square having four equal sides but a derived class does not affect the behavior of the parent class so if you will do that it will violate the Liskov Substitution Principle.
+
+4. Interface segrigation principal -- It states that “do not force any client to implement an interface which is irrelevant to them.
+suppose if you enter a restaurant and you are pure vegetarian. The waiter in that restaurant gave you the menu card which includes vegetarian items, non-vegetarian items, drinks, and sweets.
+
+In this case, as a customer, you should have a menu card which includes only vegetarian items, not everything which you don’t eat in your food. Here the menu should be different for different types of customers.
+
+5. Dependency inversion pricipal -- The Dependency Inversion Principle (DIP) is a principle in object-oriented design that states that “High-level modules should not depend on low-level modules. Both should depend on abstractions“. Additionally, abstractions should not depend on details. Details should depend on abstractions.
+
+In a software development team, developers depend on an abstract version control system (e.g., Git) to manage and track changes to the codebase. They don’t depend on specific details of how Git works internally.
+-----------------------------------------------------------------------------------------------
+
+Design patterns in Java
+
+Design patterns in Java are communicating objects and classes that are customized to solve a general design problem in a particular context. 
+Software design patterns are general, reusable solutions to common problems that arise during the design and development of software. They represent best practices for solving certain types of problems and provide a way for developers to communicate about effective design solutions.
+
+Types of Design patterns in Java
+
+1. Creational Design Patterns in Java
+2. Structural Design Patterns in Java
+3. Beheavioral Disign pattern
+
+1.1 Factory Method
+Factory Method is a creational design pattern, that provide an interface for creating objects in superclass, 
+but subclasses are responsible to create the instance of the class.
+
+1.2 Abstract Factory Method
+Abstract Factory Method is a creational design pattern, 
+it provides an interface for creating families of related or dependent objects without specifying their concrete classes.
+
+1.3 Builder Method
+Builder Method is a creational design pattern, 
+it provides an interface for constructing an object and then have concrete builder classes that implement this interface to create specific objects in a stepwise manner.
+
+1.4 Prototype Method
+Prototype Method is a creational design pattern, it provide to create new objects with the same structure and initial state 
+as an existing object without explicitly specifying their class or construction details.
+
+1.5 Singleton Method
+Singleton Method is a creational design pattern, it provide a class has only one instance, and that instance provides a global point of access to it.
+Singleton classes are used for logging, driver objects, caching, and thread pool, database connections.
+
+2. Structural Design Patterns in Java
+Structural design patterns are concerned with how classes and objects can be composed, to form larger structures.
+
+The structural design patterns simplifies the structure by identifying the relationships.
+These patterns focus on, how the classes inherit from each other and how they are composed from other classes.
+
+Adapter Pattern
+Adapting an interface into another according to client expectation.
+
+Bridge Pattern
+Separating abstraction (interface) from implementation.
+
+Composite Pattern
+Allowing clients to operate on hierarchy of objects.
+
+Decorator Pattern
+Adding functionality to an object dynamically.
+
+Facade Pattern
+Providing an interface to a set of interfaces.
+
+Flyweight Pattern
+Reusing an object by sharing it.
+
+proxy Pattern
+Representing another object.
+
+3.Behavioral Design Patterns
+Behavioral design patterns are concerned with the interaction and responsibility of objects.
+
+In these design patterns, the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.
+
+That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.
