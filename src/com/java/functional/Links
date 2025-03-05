@@ -1,0 +1,163 @@
+Befor interview
+
+https://www.benchresources.net/java-8-how-to-get-sub-string-from-a-string/#google_vignette --Jva program
+
+https://javaconceptoftheday.com/java-8-interview-sample-coding-questions/
+
+https://www.hashstudioz.com/blog/7-reasons-to-migrate-from-java-8-to-java-17/
+
+https://www.geeksforgeeks.org/top-microservices-patterns/
+
+https://medium.com/@satyendra.jaiswal/understanding-spring-bean-scopes-a-comprehensive-guide-d8032e2a0204
+
+https://www.javatpoint.com/hibernate-interview-questions
+
+https://www.javatpoint.com/spring-mvc-tutorial
+
+https://www.tektutorialshub.com/angular-tutorial/
+
+https://medium.com/@brunozambiazi/enhanced-switch-statements-in-java-17-31f3487763a0#:~:text=Java%2017%20introduces%20noteworthy%20changes,flexibility%20in%20handling%20complex%20scenarios.&text=default%20%2D%3E%200%3B,%7D%3B
+
+https://www.youtube.com/watch?v=xFZe6cB_fgs angular
+https://www.youtube.com/watch?v=R0D4YEJLYAI
+
+
+Saga design pattern implementation
+https://www.google.com/search?q=how+saga+design+pattern+works+in+spring&rlz=1C1GCEA_enIN1068IN1068&oq=how+saga+design+pattern+works+in+spring&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIHCAEQIRiPAjIHCAIQIRiPAtIBCTE3NzQyajBqNKgCALACAQ&sourceid=chrome&ie=UTF-8#fpstate=ive&vld=cid:630641ed,vid:WGI_ciUa3FE,st:0
+
+1. Strings, Array and Mathematical based problems. 
+2. Problems solved using HashMap, Set ,Trees, Linked List,Dynamic functions
+3.Difference between Array list & Linked List
+4. Collections Framework in-depth knowledge. 
+5. Immutable concept in Java, creating own Immutable class with working code. 
+6. Exception Handling all concepts like, try with resources etc. 
+7. Create a Design pattern like Singleton etc. with working code.
+Print even and odd numbers in increasing order using two threads in Java?
+
+Tech mahendra Interview Que
+
+Java 8 fatures
+lambda expression
+date time api 
+optional class
+Method reference
+StringJoiner
+How to inter connect with microservices
+api gateway
+load balancer
+circuite breaker
+scenario based que
+How to create rest endpoint in spring
+Diff between Controller and rest controller
+
+AOP
+Dependency injection
+final, finally and finalize block
+polymorphism and encapsulation
+multithreading
+synchronous and non synchronous
+Jenkins
+CICD pipeline
+How to create spring boot project on local system
+Lead level quetion like how to plane to implement the project from scratch
+what is event driven program
+functional interface
+what is server discovry
+How to monitor microservices
+Junit test cases (@Mockito, @Mock, @Test)
+Logging
+Dependency Injection
+Encryption technique
+Authorization stratergy(JWT Tocken)
+how to check health of spring boot application
+Functional interface can we extend the functionality by using default method.
+Solid pricipal
+Design patterns
+Kafka architecture
+what is transaction management in spring boot
+Advantages of Spring boot 
+Advantages of Microservices
+Caching mechanism - Hazel cast cache
+Logging stratergy
+Role op PO
+What is merge request
+How to review code
+how to connect external database in spring boot application
+what is try with resource
+diff between synchronize and synchronus keyword
+diff between rest and restful service 
+full form of REST
+diff between class not found exception and signature not found exception
+diff between throw and trows keyword
+stream is leasy loading?
+HashMap internal working
+angular lifecycle hook hooks
+When we need to use JDBC and Hibernete in project
+Why stream are lasy
+waht is design patterns 
+circuite breaker
+All que Kafka
+
+Object class
+
+Java oops concept
+
+Method overloading and overriding
+
+collections (list,set, map) concurent hashmap
+
+java 8 concept (map and flatmap)
+
+diffrence between abstract and interface
+
+Exception handeling
+
+Design patterns
+
+SOLID principle
+
+What is statelessness
+
+REST and SOAP API diff
+
+JSP servelete
+
+Spring Boot (Dependency injection, IOC) anotations
+
+Microservices architecture, Advantages and disadvantages
+
+Uses of API gateway
+
+Status code for successfull delete response (204), ok(200)
+
+DDL & DML , Joins
+
+employee list having ID name & salary, sort that list based on salary in descending order by using stream.
+
+reverse string without using reverse methode e.g Aniket
+
+Retrieving list of employees with lowest salary using stream
+
+API gateway companys 
+
+Amazon API Gateway
+Azure API Gateway
+TYK API Gateway
+Google API Gateway
+Spring Cloud Gateway using Netflix Zuul
+Kong API Gateway Tool
+IBM data power to manage API in Nordea
+
+what is asynch call
+obsevable
+how to do roughting
+how to inject one componant in another 
+how to inject the service and  diff ways
+how to print arays object in console
+binding, event
+lazy loading?
+Template and ngModel
+
+
+List<String> list = new LinkList<>();
+LinkList<String> list = new LinkList<>();

@@ -305,3 +305,134 @@ Behavioral design patterns are concerned with the interaction and responsibility
 In these design patterns, the interaction between the objects should be in such a way that they can easily talk to each other and still should be loosely coupled.
 
 That means the implementation and the client should be loosely coupled in order to avoid hard coding and dependencies.
+
+----------------------------
+
+Angular
+
+What Is The Purpose Of @Input() And @Output()?
+What Is Data Binding In Angular?
+What Are Directives In Angular?
+What Is Dependency Injection (Di)?
+What Is Lazy Loading In Angular?
+How Do You Handle Http Requests In Angular?
+How Do You Implement Authentication?
+
+What Are Typescript’s Basic Types?
+
+What Are The Advantages Of Using Typescript Over Javascript?
+
+What Is The Difference Between == And === In Typescript/Javascript
+
+Promises In Javascript:
+
+Async & Await :
+
+Ques: What Is Component Lifecycle?
+
+Ques: How Many Ways Component Communication Is Done ?
+
+Ques: What Is Template Reference Variable?
+
+Ques: What Is Ng-Content ?
+
+Ques: What Is Ng-Template ?
+
+Ques: Where Bootstrapping Is Done In Angular Application?
+
+Ques: What Is Observables?
+
+Ques: What Is Subject?
+
+Ques: What Are Decorators In Angular.
+
+Ques: What Are Pipes.
+
+Ques: How Custom Pipes Are Created.
+
+Ques: What Is The Best Way To Send Access_token From Angular To Api Endpoint ?.
+
+
+
+Java
+
+--How Do You Retrieve A Value From A Hashmap?
+By using the keySet() function on a HashMap, you can get a set that contains all of the keys that are kept in the map. Once you have access to each key, you may use a loop to iterate through this Set . Apply the get() method to every key in order to obtain and handle the values that correspond to these keys
+
+--How Do You Check If A Key Exists In A Hashmap?
+Java's HashMap uses the containsKey(Object key) method to check if a given key is present in the map. This method checks if the HashMap has a mapping for the supplied key when it is called. The function returns true if the key is present in the HashMap and returns false otherwise
+
+--What Happens If You Put A Null Key Or Value In A Hashmap?
+The HashMap, however, allows any of its values to be null , as well as one of its keys. Keys still have to be unique, so this is why only one can be null . Below is a table that summarizes all the key differences as outlined above
+The HashMap, however, allows any of its values to be null , as well as one of its keys. Keys still have to be unique, so this is why only one can be null . Below is a table that summarizes all the key differences as outlined above
+
+What Is Method Overriding In Java?
+Java 8 Features:
+Lambda Expressions: Simplifies Code By Enabling Function Passing As Arguments.
+
+
+Streams Api: Provides A Powerful Way To Process Sequences Of Data In A Functional Style.
+Default Methods: Allows Interfaces To Have Method Implementations, Reducing The Need For Concrete Classes.
+Optional Class: Helps In Handling Null Values More Safely, Avoiding Nullpointerexception.
+New Date And Time Api: Offers A More Flexible And Reliable Way To Handle Date And Time (Java.Time).
+Overloading Vs. Overriding In Java:
+What Are Solid Principles ?
+
+-- What Does The Wait() Method Do In Java, And How Is It Used In Thread Synchronization?
+In java, synchronized methods and blocks allow only one thread to acquire the lock on a resource at a time. So, when wait() method is called by a thread, then it gives up the lock on that resource and goes to sleep until some other thread enters the same monitor and invokes the notify() or notifyAll() method
+
+-- What Is The Purpose Of The Join() Method In Java Threading?
+The join() method will keep waiting if the referenced thread is blocked or takes too long to process. This can become an issue as the calling thread will become non-responsive. To handle these situations, we use overloaded versions of the join() method that allow us to specify a timeout period.
+
+-- How Do Microservices Communicate With Each Other?
+Synchronous communication
+API calls: Microservices can call APIs exposed by other services using protocols like HTTP or gRPC.
+RESTful APIs: A common way for microservices to communicate using HTTP/S protocols.
+GraphQL: A widespread method for synchronous communication that uses similar protocols as REST.
+Asynchronous communication
+Messaging systems: Microservices can send and receive messages through a queue.
+Event-driven architecture: Microservices generate and consume events in the form of messages.
+Publish/Subscribe messaging: A microservice broadcasts a message to a topic that other microservices can subscribe to.
+Other communication methods
+API Gateway: Centralizes security, scalability, and monitoring logic.
+Orchestration: A central component manages and coordinates interactions between microservices.
+Event-bus or message broker system: Publishes events between multiple microservices.
+
+-- What Is The Role Of An Api Gateway In Microservices?
+In a microservices architecture, an API Gateway acts as a single entry point for client requests, routing them to the appropriate backend microservices, aggregating data from multiple services if necessary, and returning a unified response to the client, essentially hiding the complexity of the underlying microservices by providing a simplified interface for interaction and managing tasks like authentication, rate limiting, and protocol translation.
+
+-- What Is Service Discovery In Microservices?
+
+-- What Are Some Java Frameworks Commonly Used For Microservices?
+How Is Scalability Achieved In Microservices?
+Scalability in microservices is primarily achieved through horizontal scaling, where individual microservices can be independently scaled by adding more instances to handle increased load, allowing for flexible resource allocation and high availability by distributing traffic across multiple service replicas, often facilitated by load balancers and container orchestration platforms like Kubernetes; this approach enables efficient scaling of specific services based on their individual demand rather than scaling the entire application as a single unit.
+
+What Is The Role Of Docker In Microservices?
+
+-- How Are Microservices Monitored?
+
+Performance metrics: Monitoring tools collect and monitor performance metrics from various components, such as CPU usage, memory utilization, network traffic, and response times of individual microservices. This helps track the overall health and system performance.
+Resource utilization: Monitoring tools keep an eye on resource consumption by microservices and infrastructure components. This includes monitoring CPU, memory, disk usage, and network bandwidth to ensure efficient resource allocation.
+Error rates and failure analysis: The tools track error rates, status codes, and error messages from microservices. This allows for quick detection of anomalies and potential issues, helping developers pinpoint failures and troubleshoot them promptly.
+Latency and throughput: Monitoring tools measure the time it takes for a microservice request to be processed by microservices and the rate at which those requests are handled.
+Alerts and thresholds: If any metric exceeds a specified threshold, the system triggers alerts, so IT teams can take immediate action.
+Logs and traces: Some monitoring tools integrate with logging systems to capture and analyze logs from multiple services. Tracing capabilities allow developers to follow the flow of a request across various microservices.
+API monitoring: These tools can monitor the interactions between different microservices and APIs, ensuring that API calls are successful (and letting you know when they are not) and identifying potential bottlenecks in API communication.
+Container monitoring: Monitoring tools can capture the unique environmental issues in container health, such as resource utilization and performance.
+Service mesh observability: For microservices architectures using service mesh, the monitoring tools can provide insights into the communication and interactions between microservices within the mesh.
+Application performance monitoring (APM): APM tools give attention to the code-level performance of individual microservices, to make it easier for developers to identify performance bottlenecks.
+Custom metrics: Advanced monitoring tools recognize that all those categories sometimes are not enough. They let you define and collect custom metrics specific to your microservices architecture.
+
+Tools
+Prometheus: The open-source monitoring and alerting toolkit is specifically designed for distributed systems and thus suitable for microservices monitoring.
+Grafana: Grafana is known for its visualizations and dashboards, which help navigate data collections and put them in a form that humans understand.
+
+Datadog: Datadog offers real-time alerts, distributed tracing, and APM, with features that promise full visibility into a microservices ecosystem.
+
+Dynatrace: This monitoring tool offers automatic application discovery and observability for microservices environments.
+Architect.io: This tool is a favorite for robust testing and monitoring capabilities in larger organizations, with a comprehensive view of microservices architectures.
+
+Lumigo: Lumigo offers end-to-end visibility, real-time debugging, and cost monitoring, and it gives particular attention to serverless architectures.
+AppDynamics: With its real-time visibility, outlier detection, network performance monitoring, and Docker and Kubernetes monitoring, this may be suitable for tracking events in a large, complex architecture.
+Instana: This tool promises complete observability for an entire microservices environment.
+Uptrace: With its emphasis on visibility into performance data and integration with popular programming languages and frameworks, Uptrace helps developers identify, diagnose, and resolve performance issues in a microservices ecosystem; we wrote about our Uptrace experiences recently.

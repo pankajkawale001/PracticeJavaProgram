@@ -1,3 +1,16 @@
+BeanFactory :
+	Does not support the Annotation based dependency Injection.
+	Doesn't Support I18N.
+	By default its support Lazy loading.
+	it doesn't allow configure to multiple configuration files.
+	ex: BeanFactory context=new XmlBeanFactory(new Resource("applicationContext.xml"));
+
+ApplicationContext
+	Support Annotation based dependency Injection.-@Autowired, @PreDestroy
+	Support I18N
+	Its By default support Aggresive loading.
+	It allow to configure multiple configuration files.
+
 SOAP API
 	Relies on SOAP (Simple Object Access Protocol)
 	Transports data in standard XML format.

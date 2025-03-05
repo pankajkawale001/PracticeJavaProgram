@@ -19,6 +19,7 @@ public class InterviewEmployeePrograms {
 		employees.add(new Employees(3, "Ramu", "A", 5000.00));
 		employees.add(new Employees(4, "Rahul", "C", 7000.00));
 		employees.add(new Employees(5, "Pawan", "A", 3000.00));
+		employees.add(new Employees(6, null, "A", 3000.00));
 
 		// Distinct Employees
 		Map<Integer, List<Employees>> distinctEmployee = employees.stream().distinct()
@@ -102,6 +103,17 @@ public class InterviewEmployeePrograms {
 		List<Employees> sortedByNameDesc = employees.stream()
 				.sorted(Comparator.comparing(Employees::getSalary).reversed()).collect(Collectors.toList());
 		System.out.println("Sort by salary in descending order " + sortedByNameDesc);
+
+		// sort the employee object based on salary there can be null value in salary by
+		// java 8
+		/*
+		 * List<Employee> sortedEmployees = employees.stream()
+		 * .sorted(Comparator.comparing(Employee::getName,
+		 * Comparator.nullsLast(String::compareTo))) // Sort with // nullsLast
+		 * .collect(Collectors.toList());
+		 * 
+		 * sortedEmployees.forEach(System.out::println);
+		 */
 
 		/*-------------------------------Student Section-----------------------------------------------------*/
 
